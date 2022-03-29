@@ -1,0 +1,28 @@
+<div class="container">
+    <div class="m-5">
+        <h1 class="text-center ">Welcome to our fishing blog!</h1>
+    </div>
+    <div *ngIf="!isAuthenticated">
+        <div class="d-flex justify-content-between">
+            <div class="card text-white bg-info mb-3 container-fluid content-row">
+                <div class="card-body container-fluid content-row d-flex flex-column">
+                    <h4 class="card-title container-fluid">New member?</h4>
+                    <p class="card-text">Get registration and start manage your working process</p>
+                </div>
+                <div class="card-buttons align-self-md-center mb-3">
+                    <a class="btn btn-secondary" [routerLink]=''><i class="fas fa-user-plus p-1"></i>Register</a>
+                </div>
+            </div>
+            <div class="col py-3 px-md-5 bordered col-example"></div>
+            <div class="card text-white bg-info mb-3 container-fluid content-row">
+                <div class="card-body container-fluid content-row d-flex flex-column">
+                    <h4 class="card-title container-fluid">Already registered?</h4>
+                    <p class="card-text">Login and manage your working process</p>
+                </div>
+                <div class="card-buttons align-self-md-center mb-3">
+                    <a class="btn btn-secondary" [routerLink]=''><i class="fas fa-sign-in-alt p-1"></i>Login</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

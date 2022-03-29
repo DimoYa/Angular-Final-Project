@@ -1,0 +1,20 @@
+@media (max-width: 800px) {
+    html {
+        font-size: 14px;
+    }
+    .d-flex {
+        display: block !important;
+    }
+}
+
+@media (min-width: 1024px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+@media (min-width: 1280px) {
+    html {
+        font-size: 18px;
+    }
+}

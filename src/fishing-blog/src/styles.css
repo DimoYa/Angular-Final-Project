@@ -1,1 +1,37 @@
-/* You can add global styles to this file, and also import other style files */
+@import url('./assets/reset.css');
+@import url('./assets/layout.css');
+@import url('./assets/responsive.css');
+
+body {
+    max-width: 1366px;
+    margin: auto;
+    position: relative;
+    min-height: 100vh;
+    border: 1px outset #147a9e;
+}
+
+.container {
+    width: 90%;
+    margin: auto;
+    gap: 30px;
+}
+
+h4 {
+    text-align: center;
+    font-weight: bold;
+    color: #147a9e;
+}
+h1 {
+    color: #147a9e;
+  }
+
+
+a, button:hover {
+    cursor: pointer;
+}
+
+
+.alert-danger {
+    background-color: #bc204b;
+    color: #fff;
+}
