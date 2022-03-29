@@ -5,6 +5,12 @@
     .d-flex {
         display: block !important;
     }
+    .navbar-nav {
+        align-items: flex-start;
+    }
+    .card-buttons {
+        align-self: center;
+    }
 }
 
 @media (min-width: 1024px) {
