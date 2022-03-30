@@ -11,7 +11,7 @@
     .card-buttons {
         align-self: center;
     }
-    form.register, form.login >.jumbotron {
+    form.register > .container, form.login > .container {
        width: 90% !important;
     }
 }

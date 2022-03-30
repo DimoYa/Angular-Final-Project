@@ -1,1 +1,44 @@
-<p>login works!</p>
+    <form class="login" [formGroup]="loginFormGroup" (ngSubmit)="login()">
+        <div class="container">
+        <fieldset>
+            <h2>Login Form</h2>
+            <p *ngIf="errorMessage" class="alert-danger">{{errorMessage}}</p>
+            <p class="field field-icon">
+                <label for="email"><span><i class="fas fa-envelope"></i></span></label>
+                <input formControlName="email"
+                    [class.input-error]="f['email'].touched && f['email'].invalid"
+                    type="email" name="email" id="email" placeholder="john.doe@gmail.com">
+            </p>
+            <ng-container *ngIf="f['email'].touched && f['email'].invalid">
+                <p *ngIf="f['email'].errors['required']" class="alert alert-danger">
+                    Email is required!
+                </p>
+
+                <p *ngIf="f['email'].errors['email']" class="alert alert-danger">
+                    Email is not valid!
+                </p>
+            </ng-container>
+
+            <p class="field field-icon">
+                <label for="password"><span><i class="fas fa-lock"></i></span></label>
+                <input formControlName="password" type="password" name="password" id="password" placeholder="******">
+            </p>
+            <ng-container *ngIf="f['password'].touched && f['password'].invalid">
+                <p *ngIf="f['password'].errors['required']" class="alert alert-danger">
+                    Password is required!
+                </p>
+                <p *ngIf="f['password'].errors['minlength']" class="alert alert-danger">
+                    Password must be at least 5 characters!
+                </p>
+            </ng-container>
+
+            <button class="btn btn-primary btn-block" [disabled]="loginFormGroup.invalid">Login</button>
+
+            <p class="text-center">
+                Have an account?
+                <a routerLink="/register">Register</a>
+            </p>
+
+        </fieldset>
+        </div>
+    </form>

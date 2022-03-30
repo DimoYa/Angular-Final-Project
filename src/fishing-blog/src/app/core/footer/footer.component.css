@@ -1,11 +1,9 @@
 /* footer  */
 
 footer {
-    margin-top: 1em;
     position: absolute;
     bottom: 0;
     width: 100%;
-    max-width: 1366px;
 }
 
 footer a {

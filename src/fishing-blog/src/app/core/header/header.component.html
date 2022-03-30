@@ -7,38 +7,37 @@
         <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between" [ngClass]="{ show: isExpanded }">
             <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
                 <li class="nav-item" routerLink="/">
-                    <a class="navbar-brand"><i class="fa fa-fw fa-home"></i>Home</a>
+                    <a><i class="fa fa-fw fa-home"></i><span>Home</span></a>
                 </li>
                 <li class="nav-item" routerLink="/login">
-                    <a class="navbar-brand"><i class="fas fa-sign-in-alt"></i>Login</a>
+                    <a><i class="fas fa-sign-in-alt"></i><span>Login</span></a>
                 </li>
                 <li class="nav-item" routerLink="/register">
-                    <a class="navbar-brand"><i class="fas fa-user-plus"></i>Register</a>
+                    <a><i class="fas fa-user-plus"></i><span>Register</span></a>
                 </li>
                 <li class="nav-item" routerLink="articles/create">
-                    <a class="navbar-brand"><i class="fa fa-plus"></i>Create
-                        article</a>
+                    <a><i class="fa fa-plus"></i><span>Create
+                            article</span></a>
                 </li>
                 <li class="nav-item" routerLink="articles/details">
-                    <a class="navbar-brand"><i class="fas fa-newspaper"></i>My articles</a>
+                    <a><i class="fas fa-newspaper"></i><span>My articles</span></a>
                 </li>
-                <li class="dropdown nav-item">
-                    <a class="dropdown-toggle navbar-brand" data-toggle="dropdown" aria-expanded="false"><i
+                <li class="nav-item dropdown" id="admin">
+                    <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true"><i
                             class="fas fa-user-shield"></i>Admin</a>
                     <ul class="dropdown-menu" role="menu">
-                        <a class="dropdownItem" routerLink="admin/user-management">User management</a>
-                        <a class="dropdownItem" routerLink="admin/articles/details">Article management</a>
+                        <a class="dropdownItem" routerLink="">User management</a>
+                        <a class="dropdownItem" routerLink="">Article management</a>
                     </ul>
                 </li>
             </ul>
             <ul class="navbar-nav mt-2 mt-lg-0">
 
-                <li class="nav-item" routerLink="/myProfile/">
+                <li class="nav-item" routerLink="/profile">
                     <a><img src="../../../assets/profile.png" class="avatar" alt="Avatar"></a>
                 </li>
                 <li class="nav-item">
-                    <a class="navbar-brand" *ngIf="isLogged" (click)="logout()"><i
-                            class="fas fa-sign-out-alt"></i>Logout</a>
+                    <a *ngIf="isLogged" (click)="logout()"><i class="fas fa-sign-out-alt"></i><span>Logout</span></a>
                 </li>
             </ul>
         </div>

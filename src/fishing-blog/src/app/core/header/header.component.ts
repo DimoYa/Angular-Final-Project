@@ -13,6 +13,7 @@ export class HeaderComponent  {
 
 toggle(): void {
     this.isExpanded = !this.isExpanded;
+    console.log(this.isExpanded)
   }
 
   logout(): void {
