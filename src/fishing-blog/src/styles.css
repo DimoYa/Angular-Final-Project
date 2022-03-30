@@ -9,13 +9,15 @@ body {
     position: relative;
     min-height: 100vh;
     border: 1px outset #147a9e;
+    background-color: #e9ebee
 }
 
 .container {
     width: 90%;
     margin: auto;
-    gap: 30px;
+    background-color: #fff
 }
+
 
 h4 {
     text-align: center;
@@ -33,6 +35,8 @@ a, button:hover {
 
 
 .alert-danger {
-    background-color: #bc204b;
-    color: #fff;
+  background-color: #bc204b;
+  color: #fff;
+  display: flex;
+  justify-content: center;
 }
