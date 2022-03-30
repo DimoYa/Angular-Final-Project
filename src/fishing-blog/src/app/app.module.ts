@@ -9,6 +9,7 @@ import { CoreModule } from './core/core.module';
 import { PagesModule } from './feature/pages/pages.module';
 import { HeaderComponent } from './core/header/header.component';
 import { FooterComponent } from './core/footer/footer.component';
+import { AuthenticationModule } from './authentication/authentication.module';
 
 
 
@@ -23,6 +24,7 @@ import { FooterComponent } from './core/footer/footer.component';
     CoreModule,
     AppRoutingModule,
     PagesModule,
+    AuthenticationModule
   ],
   providers: [],
   bootstrap: [

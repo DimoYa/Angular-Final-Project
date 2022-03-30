@@ -11,6 +11,9 @@
     .card-buttons {
         align-self: center;
     }
+    form.register, form.login >.jumbotron {
+       width: 90% !important;
+    }
 }
 
 @media (min-width: 1024px) {
