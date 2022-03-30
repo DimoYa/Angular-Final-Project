@@ -1,5 +1,4 @@
 nav a {
-    float: right;
     display: block;
     color: #e9ebee;
     text-align: center;
@@ -14,6 +13,13 @@ nav a {
   border-radius: 50%;
 }
 
+
+.dropdownItem {
+  font-weight: bold;
+  color: #147a9e!important;
+}
+
+
 i {
   margin-right: 3px;
 }
@@ -25,31 +31,4 @@ a {
   transition: all 0.5s;
   cursor: pointer;
   box-shadow: 0 10px 20px -8px rgba(0, 0, 0,.7);
-}
-
-a{
-  cursor: pointer;
-  display: inline-block;
-  position: relative;
-  transition: 0.5s;
-}
-
-a:after {
-  color: #e9ebee;
-  position: absolute;
-  opacity: 0;  
-  top: 14px;
-  right: -20px;
-  transition: 0.5s;
-}
-
-a:hover{
-  color: #e9ebee;
-  padding-right: 24px;
-  padding-left:8px;
-}
-
-a:hover:after {
-  opacity: 1;
-  right: 10px;
 }
