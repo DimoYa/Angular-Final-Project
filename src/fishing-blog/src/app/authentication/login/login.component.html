@@ -7,7 +7,7 @@
                 <label for="email"><span><i class="fas fa-envelope"></i></span></label>
                 <input formControlName="email"
                     [class.input-error]="f['email'].touched && f['email'].invalid"
-                    type="email" name="email" id="email" placeholder="john.doe@gmail.com">
+                    type="email" name="email" id="email" placeholder="user@gmail.com">
             </p>
             <ng-container *ngIf="f['email'].touched && f['email'].invalid">
                 <p *ngIf="f['email'].errors['required']" class="alert alert-danger">
