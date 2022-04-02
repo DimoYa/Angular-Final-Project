@@ -1,10 +1,9 @@
-interface UserModel {
-    _id: string;
-    username: string,
+import Base from "./base-model";
+
+interface UserModel extends Base {
     fullname: string,
-    email: string,
+    username: string,
     password: string,
-    confirmPassword: string,
     phoneNumber?: string,
     image?: string,
 }

@@ -6,13 +6,12 @@ import {
 } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
-import { Router } from '@angular/router';
 import { appKey, appSecret } from 'src/app/kinvey.tokens';
 
 @Injectable()
 export class TokenInterceptor implements HttpInterceptor {
 
-    constructor(private router: Router) { }
+    constructor() { }
 
     intercept(request: HttpRequest<any>, next: HttpHandler)
         : Observable<HttpEvent<any>> {

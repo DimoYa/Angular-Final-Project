@@ -1,7 +1,8 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { appKey } from 'src/app/kinvey.tokens';
+import { environment } from 'src/environments/environment';
+import LoginModel from '../models/login-model';
 import UserModel from '../models/user-model';
 
 @Injectable({
@@ -9,7 +10,8 @@ import UserModel from '../models/user-model';
 })
 export class AuthenticationService {
 
-  private readonly baseUrl = `https://baas.kinvey.com/user/${appKey}`;
+  private readonly baseUrl = environment.apiUrl;
+
 
   currentAuthtoken: string;
   
@@ -25,19 +27,19 @@ export class AuthenticationService {
     this.currentAuthtoken = value;
   }
 
-  login(userModel): Observable<UserModel> {
+  login$(userModel : LoginModel): Observable<LoginModel> {
     return this.httpClient.post<UserModel>(`${this.baseUrl}/login`, userModel);
   }
 
-  register(userModel): Observable<UserModel> {
+  register$(userModel: UserModel): Observable<UserModel> {
     return this.httpClient.post<UserModel>(`${this.baseUrl}`, userModel);
   }
 
-  logout() {
+  logout$() : Observable<Object> {
     return this.httpClient.post(`${this.baseUrl}/_logout`, {});
   }
 
-  isLoggedIn() {
+  isLoggedIn(): boolean {
     return localStorage.getItem('authtoken') !== null;
   }
 }

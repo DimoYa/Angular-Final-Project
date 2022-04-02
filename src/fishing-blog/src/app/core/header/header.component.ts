@@ -1,21 +1,39 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { AuthenticationService } from '../services/authentication.service';
+import { UserService } from '../services/user.service';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css'],
 })
-export class HeaderComponent  {
-
-  isLogged: boolean = false;
+export class HeaderComponent {
+  isLogged: boolean;
+  isAdmin: boolean;
   isExpanded: boolean = false;
 
+  constructor(
+    private authenticationService: AuthenticationService,
+    private userService: UserService,
+    private router: Router
+  ) {}
 
-toggle(): void {
+  ngDoCheck(): void {
+    this.isLogged = this.authenticationService.isLoggedIn();
+    this.isAdmin = this.userService.isAdmin();
+  }
+
+  toggle(): void {
     this.isExpanded = !this.isExpanded;
-    console.log(this.isExpanded)
+    console.log(this.isExpanded);
   }
 
   logout(): void {
+    this.authenticationService.logout$().subscribe(() => {
+      localStorage.clear();
+      this.authenticationService.currentAuthtoken = '';
+      this.router.navigate(['/login']);
+    });
   }
 }

@@ -1,6 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs/internal/Subscription';
+import UserModel from 'src/app/core/models/user-model';
+import { AuthenticationService } from 'src/app/core/services/authentication.service';
 import { emailValidator, fullNameValidator, passwordMatch, phoneNumberValidator } from '../utils';
 
 @Component({
@@ -8,10 +11,11 @@ import { emailValidator, fullNameValidator, passwordMatch, phoneNumberValidator 
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css']
 })
-export class RegisterComponent implements OnInit {
+export class RegisterComponent implements OnDestroy {
 
   errorMessage: string = '';
   getCodes = ['359', '124', '152'];
+  subscription: Subscription; 
 
   passwordControl = new FormControl(null, [Validators.required, Validators.minLength(4)]);
 
@@ -33,25 +37,38 @@ export class RegisterComponent implements OnInit {
 
   constructor(
     private formBuilder: FormBuilder,
+    private authenticationService: AuthenticationService,
     private router: Router) { }
 
-  ngOnInit(): void { }
-
+  ngOnDestroy(): void {
+      this.subscription.unsubscribe();   
+   }
+  
   register(): void {
     this.errorMessage = '';
-    console.log(this.registerFormGroup.value);
-    const { email, fullname, passwords, phoneCode, phoneNumber, photo } = this.registerFormGroup.value;
+    const { email, fullname, phoneCode, phoneNumber, passwords } = this.registerFormGroup.value;
 
-    const body = {
-      email: email,
+    const body : UserModel = {
+      _id: '',
+      _acl: '',
+      _kmd: '',
+      username: email,
       fullname: fullname,
-      password: passwords.password,
       phoneNumber: phoneCode + phoneNumber,
-      photo: photo
+      password: passwords.password
     }
 
-    console.log(body);
-
+    this.subscription = this.authenticationService.register$(body).subscribe({
+      next: () => {
+        this.router.navigate(['/login']);
+      },
+      complete: () => {
+        console.log('register stream completed');
+      },
+      error: (err) => {
+        this.errorMessage = err.error.message;
+      },
+    });
     this.registerFormGroup.reset();
   }
 

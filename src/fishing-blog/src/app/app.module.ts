@@ -10,6 +10,7 @@ import { PagesModule } from './feature/pages/pages.module';
 import { HeaderComponent } from './core/header/header.component';
 import { FooterComponent } from './core/footer/footer.component';
 import { AuthenticationModule } from './authentication/authentication.module';
+import { ToastrModule } from 'ngx-toastr';
 
 
 
@@ -20,6 +21,7 @@ import { AuthenticationModule } from './authentication/authentication.module';
   imports: [
     BrowserModule,
     HttpClientModule,
+    ToastrModule.forRoot(),
     RouterModule,
     CoreModule,
     AppRoutingModule,
