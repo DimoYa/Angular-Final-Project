@@ -5,6 +5,6 @@ interface UserModel extends Base {
     username: string,
     password: string,
     phoneNumber?: string,
-    image?: string,
+    photo?: string,
 }
 export default UserModel;

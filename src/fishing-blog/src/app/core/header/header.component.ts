@@ -11,7 +11,10 @@ import { UserService } from '../services/user.service';
 export class HeaderComponent {
   isLogged: boolean;
   isAdmin: boolean;
+  avatar: string;
+  username: string;
   isExpanded: boolean = false;
+  defaultAvatarPath: string = '../../../assets/profile.png';
 
   constructor(
     private authenticationService: AuthenticationService,
@@ -22,6 +25,8 @@ export class HeaderComponent {
   ngDoCheck(): void {
     this.isLogged = this.authenticationService.isLoggedIn();
     this.isAdmin = this.userService.isAdmin();
+    this.avatar = this.userService.returnUserPhoto();
+    this.username = this.userService.returnUserName();
   }
 
   toggle(): void {

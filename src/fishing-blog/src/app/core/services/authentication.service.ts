@@ -2,7 +2,6 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import LoginModel from '../models/login-model';
 import UserModel from '../models/user-model';
 
 @Injectable({
@@ -27,12 +26,12 @@ export class AuthenticationService {
     this.currentAuthtoken = value;
   }
 
-  login$(userModel : LoginModel): Observable<LoginModel> {
-    return this.httpClient.post<UserModel>(`${this.baseUrl}/login`, userModel);
+  login$(body): Observable<UserModel> {
+    return this.httpClient.post<UserModel>(`${this.baseUrl}/login`, body);
   }
 
-  register$(userModel: UserModel): Observable<UserModel> {
-    return this.httpClient.post<UserModel>(`${this.baseUrl}`, userModel);
+  register$(body): Observable<UserModel> {
+    return this.httpClient.post<UserModel>(`${this.baseUrl}`, body);
   }
 
   logout$() : Observable<Object> {

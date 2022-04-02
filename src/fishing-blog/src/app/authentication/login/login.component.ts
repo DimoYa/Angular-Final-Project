@@ -7,7 +7,6 @@ import {
 } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs/internal/Subscription';
-import LoginModel from 'src/app/core/models/login-model';
 import { AuthenticationService } from 'src/app/core/services/authentication.service';
 import { emailValidator } from '../utils';
 
@@ -39,10 +38,7 @@ export class LoginComponent implements OnDestroy {
     this.errorMessage = '';
     const { email, password } = this.loginFormGroup.value;
 
-    const body : LoginModel = {
-      _id: '',
-      _acl: '',
-      _kmd: '',
+    const body  = {
       username: email,
       password: password,
     }
@@ -51,7 +47,6 @@ export class LoginComponent implements OnDestroy {
       .login$(body)
       .subscribe({
         next: (data) => {
-          console.log(data);
           this.authenticationService.authtoken = data['_kmd']['authtoken'];
           localStorage.setItem('authtoken', data['_kmd']['authtoken']);
           localStorage.setItem('username', data['username']);

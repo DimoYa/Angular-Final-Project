@@ -10,20 +10,24 @@
                 <li class="nav-item" routerLink="/">
                     <a><i class="fa fa-fw fa-home"></i><span>Home</span></a>
                 </li>
-                <li class="nav-item" routerLink="/login">
-                    <a><i class="fas fa-sign-in-alt"></i><span>Login</span></a>
-                </li>
-                <li class="nav-item" routerLink="/register">
-                    <a><i class="fas fa-user-plus"></i><span>Register</span></a>
-                </li>
-                <li class="nav-item" routerLink="articles/create">
-                    <a><i class="fa fa-plus"></i><span>Create
-                            article</span></a>
-                </li>
-                <li class="nav-item" routerLink="articles/details">
-                    <a><i class="fas fa-newspaper"></i><span>My articles</span></a>
-                </li>
-                <li class="dropdown">
+                <ng-container *ngIf="!isLogged">
+                    <li class="nav-item" routerLink="/login">
+                        <a><i class="fas fa-sign-in-alt"></i><span>Login</span></a>
+                    </li>
+                    <li class="nav-item" routerLink="/register">
+                        <a><i class="fas fa-user-plus"></i><span>Register</span></a>
+                    </li>
+                </ng-container>
+                <ng-container *ngIf="isLogged">
+                    <li class="nav-item" routerLink="articles/create">
+                        <a><i class="fa fa-plus"></i><span>Create
+                                article</span></a>
+                    </li>
+                    <li class="nav-item" routerLink="articles/details">
+                        <a><i class="fas fa-newspaper"></i><span>My articles</span></a>
+                    </li>
+                </ng-container>
+                <li class="dropdown" *ngIf="isAdmin">
                     <a class="dropdown-toggle" data-toggle="dropdown" aria-expanded="true"><i
                             class="fas fa-user-shield"></i>Admin</a>
                     <ul class="dropdown-menu">
@@ -32,13 +36,13 @@
                     </ul>
                 </li>
             </ul>
-            <ul class="navbar-nav mt-2 mt-lg-0">
+            <ul class="navbar-nav mt-2 mt-lg-0" *ngIf="isLogged">
 
                 <li class="nav-item" routerLink="/profile">
-                    <a><img src="../../../assets/profile.png" class="avatar" alt="Avatar"></a>
+                    <a><img [src]="avatar!= 'null' ? avatar : defaultAvatarPath" class="avatar" alt="Avatar"></a>
                 </li>
                 <li class="nav-item">
-                    <a *ngIf="isLogged" (click)="logout()"><i class="fas fa-sign-out-alt"></i><span>Logout</span></a>
+                    <a (click)="logout()"><i class="fas fa-sign-out-alt"></i><span>Logout</span></a>
                 </li>
             </ul>
         </div>

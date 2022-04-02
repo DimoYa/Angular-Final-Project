@@ -37,7 +37,7 @@ export function phoneNumberValidator(control: AbstractControl): ValidationErrors
         return null
     }
 
-    if (!/\d{9}/.test(value)) {
+    if (!/^\d{9}$/.test(value)) {
         return {
             phoneNumber: true,
         }

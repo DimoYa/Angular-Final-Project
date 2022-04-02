@@ -3,6 +3,8 @@
         <fieldset>
             <h2>Login Form</h2>
             <p *ngIf="errorMessage" class="alert-danger">{{errorMessage}}</p>
+
+            <!-- email -->
             <p class="field field-icon">
                 <label for="email"><span><i class="fas fa-envelope"></i></span></label>
                 <input formControlName="email"
@@ -19,6 +21,7 @@
                 </p>
             </ng-container>
 
+            <!-- password -->
             <p class="field field-icon">
                 <label for="password"><span><i class="fas fa-lock"></i></span></label>
                 <input formControlName="password" type="password" name="password" id="password" placeholder="******">

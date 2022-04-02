@@ -46,15 +46,13 @@ export class RegisterComponent implements OnDestroy {
   
   register(): void {
     this.errorMessage = '';
-    const { email, fullname, phoneCode, phoneNumber, passwords } = this.registerFormGroup.value;
+    const { email, fullname, phoneCode, phoneNumber, photo, passwords } = this.registerFormGroup.value;
 
-    const body : UserModel = {
-      _id: '',
-      _acl: '',
-      _kmd: '',
+    const body  = {
       username: email,
       fullname: fullname,
       phoneNumber: phoneCode + phoneNumber,
+      photo: photo,
       password: passwords.password
     }
 

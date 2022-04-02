@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthenticationService } from 'src/app/core/services/authentication.service';
 
 @Component({
   selector: 'app-welcome',
@@ -7,8 +8,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class WelcomeComponent {
 
-  isAuthenticated: boolean = false;
+  isLogged = this.authenticationService.isLoggedIn();
 
-  constructor() { }
+  constructor(private authenticationService: AuthenticationService) { }
 
 }
