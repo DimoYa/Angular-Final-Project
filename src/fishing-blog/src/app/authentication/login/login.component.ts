@@ -38,34 +38,24 @@ export class LoginComponent implements OnDestroy {
     this.errorMessage = '';
     const { email, password } = this.loginFormGroup.value;
 
-    const body  = {
+    const body = {
       username: email,
       password: password,
-    }
+    };
 
     this.subscription = this.authenticationService
       .login$(body)
-      .subscribe({
-        next: (data) => {
-          this.authenticationService.authtoken = data['_kmd']['authtoken'];
-          localStorage.setItem('authtoken', data['_kmd']['authtoken']);
-          localStorage.setItem('username', data['username']);
-          localStorage.setItem('id', data['_id']);
-          localStorage.setItem('photo', data['photo']);
-          data['_kmd']['roles'] !== undefined &&
-          data['_kmd']['roles'].length != 0
-            ? localStorage.setItem('isAdmin', 'true')
-            : localStorage.setItem('isAdmin', 'false');
-          this.router.navigate(['/home']);
-        },
-        complete: () => {
-          console.log('login stream completed');
-        },
-        error: (err) => {
-          this.errorMessage = err.error.message;
-        },
+      .subscribe((data) => {
+        this.authenticationService.authtoken = data['_kmd']['authtoken'];
+        localStorage.setItem('authtoken', data['_kmd']['authtoken']);
+        localStorage.setItem('username', data['username']);
+        localStorage.setItem('id', data['_id']);
+        localStorage.setItem('photo', data['photo']);
+        data['_kmd']['roles'] !== undefined && data['_kmd']['roles'].length != 0
+          ? localStorage.setItem('isAdmin', 'true')
+          : localStorage.setItem('isAdmin', 'false');
+        this.router.navigate(['/home']);
       });
-    this.loginFormGroup.reset();
   }
 
   get f() {
