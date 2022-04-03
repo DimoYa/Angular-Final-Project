@@ -17,7 +17,7 @@ import { emailValidator } from '../utils';
 })
 export class LoginComponent implements OnDestroy {
   errorMessage: string = '';
-  subscription: Subscription;
+  subscription!: Subscription;
 
   loginFormGroup: FormGroup = this.formBuilder.group({
     email: new FormControl('', [Validators.required, emailValidator]),
@@ -31,11 +31,10 @@ export class LoginComponent implements OnDestroy {
   ) {}
 
   ngOnDestroy(): void {
-    this.subscription.unsubscribe();
+    this.subscription?.unsubscribe();
   }
 
   login(): void {
-    this.errorMessage = '';
     const { email, password } = this.loginFormGroup.value;
 
     const body = {

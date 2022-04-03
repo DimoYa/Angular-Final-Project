@@ -7,7 +7,6 @@ import {
 } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs/internal/Subscription';
-import UserModel from 'src/app/core/models/user-model';
 import { AuthenticationService } from 'src/app/core/services/authentication.service';
 import {
   emailValidator,
@@ -24,7 +23,7 @@ import {
 export class RegisterComponent implements OnDestroy {
   errorMessage: string = '';
   getCodes = ['359', '124', '152'];
-  subscription: Subscription;
+  subscription!: Subscription;
 
   passwordControl = new FormControl(null, [
     Validators.required,
@@ -57,7 +56,7 @@ export class RegisterComponent implements OnDestroy {
   ) {}
 
   ngOnDestroy(): void {
-    this.subscription.unsubscribe();
+    this.subscription?.unsubscribe();
   }
 
   register(): void {

@@ -22,7 +22,7 @@ export function fullNameValidator(control: AbstractControl): ValidationErrors | 
         return null
     }
 
-    if (!/^([A-Z][a-z]+\s[A-z][a-z]+)$/.test(value)) {
+    if (!/^([A-Z][a-z]+\s[A-Z][a-z]+)$/.test(value)) {
         return {
             fullname: true,
         }

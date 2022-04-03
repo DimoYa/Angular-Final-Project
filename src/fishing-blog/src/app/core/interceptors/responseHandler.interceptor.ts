@@ -1,39 +1,37 @@
 import { Injectable } from '@angular/core';
-import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent, HttpResponse } from '@angular/common/http';
+import {
+  HttpInterceptor,
+  HttpRequest,
+  HttpHandler,
+  HttpEvent,
+  HttpResponse,
+} from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { ToastrService } from 'ngx-toastr';
-import { tap, catchError } from 'rxjs/operators'
-import { Router } from '@angular/router';
+import { tap, catchError } from 'rxjs/operators';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class HandlerInterceptorService implements HttpInterceptor {
+  constructor(public toastService: ToastrService) {}
 
-  constructor(public toastService: ToastrService,
-    private router: Router) { }
-
-
-  intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-    return next.handle(req).pipe(tap((success) => {
-      if (success instanceof HttpResponse) {
-
-        let currentUrl = this.router.url;
-        if (currentUrl.includes('login')) {
-          this.toastService.success('Login successfully');
-        } else if (currentUrl.includes('register')) {
-          this.toastService.success('Register successfully');
-        } else if (currentUrl.includes('create')) {
-          this.toastService.success('Article successfully created');
+  intercept(
+    req: HttpRequest<any>,
+    next: HttpHandler
+  ): Observable<HttpEvent<any>> {
+    return next.handle(req).pipe(
+      tap((success) => {
+        if (success instanceof HttpResponse) {
+          let method = success.url.split('/').pop();
+          method = method.includes('kid') ? 'register' : method;
+          this.toastService.success(`${method} successfully`);
         }
-      }
-
-    }), catchError((err) => {
-      this.toastService.error(err.error.description)
-      throw err;
-    })
-    )
+      }),
+      catchError((err) => {
+        this.toastService.error(err.error.description);
+        throw err;
+      })
+    );
   }
 }
-
-
