@@ -11,24 +11,23 @@ import { TokenInterceptor } from './interceptors/token.interceptor';
   declarations: [HeaderComponent, FooterComponent],
   imports: [CommonModule, RouterModule],
   exports: [HeaderComponent, FooterComponent],
-  providers: [
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: TokenInterceptor,
-      multi: true,
-    },
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: HandlerInterceptorService,
-      multi: true,
-    },
-  ],
 })
 export class CoreModule {
   static forRoot(): ModuleWithProviders<CoreModule> {
     return {
       ngModule: CoreModule,
-      providers: [],
+      providers: [
+        {
+          provide: HTTP_INTERCEPTORS,
+          useClass: TokenInterceptor,
+          multi: true,
+        },
+        {
+          provide: HTTP_INTERCEPTORS,
+          useClass: HandlerInterceptorService,
+          multi: true,
+        },
+      ],
     };
   }
 }

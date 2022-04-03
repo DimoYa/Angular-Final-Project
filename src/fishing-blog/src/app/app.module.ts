@@ -23,7 +23,7 @@ import { ToastrModule } from 'ngx-toastr';
     HttpClientModule,
     ToastrModule.forRoot(),
     RouterModule,
-    CoreModule,
+    CoreModule.forRoot(),
     AppRoutingModule,
     PagesModule,
     AuthenticationModule
