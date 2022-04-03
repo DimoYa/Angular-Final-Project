@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthenticationService } from 'src/app/core/services/authentication.service';
 import { UserService } from 'src/app/core/services/user.service';
 
 @Component({
@@ -7,12 +8,12 @@ import { UserService } from 'src/app/core/services/user.service';
   styleUrls: ['./profile.component.css'],
 })
 export class ProfileComponent implements OnInit {
-  constructor(private userService: UserService) {}
+  constructor(private authenticationService: AuthenticationService) {}
   avatar!: string;
   defaultAvatarPath!: string;
 
   ngOnInit(): void {
-    this.avatar = this.userService.returnUserPhoto();
+    this.avatar = this.authenticationService.returnUserPhoto();
     this.defaultAvatarPath = '../../../assets/profile.png';
   }
 }

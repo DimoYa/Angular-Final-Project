@@ -12,13 +12,7 @@ export class UserService {
 
   private readonly baseUrl = environment.apiUrl;
 
-  constructor(
-    private http: HttpClient,
-    private router: Router) { }
-
-  isAdmin(): boolean {
-    return localStorage.getItem('isAdmin') === 'true';
-  }
+  constructor(private http: HttpClient) { }
 
   updateUser$(usrModel: UserModel, id: string): Observable<UserModel> {
     return this.http.put<UserModel>(this.baseUrl + `/${id}`, usrModel);
@@ -34,21 +28,5 @@ export class UserService {
 
   destroy$(Id: string) : Observable<Object> {
     return this.http.delete(`${this.baseUrl}/${Id}`);
-  }
-
-  isCurrentUser(): boolean {
-    return `/myProfile/${this.returnId()}` === this.router.url;
-  }
-
-  returnId(): string {
-    return localStorage.getItem('id');
-  }
-
-  returnUserName(): string {
-    return localStorage.getItem('username');
-  }
-
-  returnUserPhoto(): string {
-    return localStorage.getItem('photo');
   }
 }

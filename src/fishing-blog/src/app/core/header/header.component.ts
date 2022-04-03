@@ -18,15 +18,14 @@ export class HeaderComponent {
 
   constructor(
     private authenticationService: AuthenticationService,
-    private userService: UserService,
     private router: Router
   ) {}
 
   ngDoCheck(): void {
     this.isLogged = this.authenticationService.isLoggedIn();
-    this.isAdmin = this.userService.isAdmin();
-    this.avatar = this.userService.returnUserPhoto();
-    this.username = this.userService.returnUserName();
+    this.isAdmin = this.authenticationService.isAdmin();
+    this.avatar = this.authenticationService.returnUserPhoto();
+    this.username = this.authenticationService.returnUserName();
     this.isExpanded = false;
   }
 
@@ -37,8 +36,6 @@ export class HeaderComponent {
 
   logout(): void {
     this.authenticationService.logout$().subscribe(() => {
-      localStorage.clear();
-      this.authenticationService.currentAuthtoken = '';
       this.router.navigate(['/login']);
     });
   }
