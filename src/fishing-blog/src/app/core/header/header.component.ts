@@ -13,7 +13,7 @@ export class HeaderComponent {
   isAdmin: boolean;
   avatar: string;
   username: string;
-  isExpanded: boolean = false;
+  isExpanded: boolean;
   defaultAvatarPath: string = '../../../assets/profile.png';
 
   constructor(
@@ -27,6 +27,7 @@ export class HeaderComponent {
     this.isAdmin = this.userService.isAdmin();
     this.avatar = this.userService.returnUserPhoto();
     this.username = this.userService.returnUserName();
+    this.isExpanded = false;
   }
 
   toggle(): void {

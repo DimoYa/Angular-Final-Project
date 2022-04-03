@@ -12,9 +12,13 @@ body {
     background-color: #e9ebee
 }
 
+.wrapper {
+    margin-bottom: 100px;
+}
+
 .container {
-    width: 70%;
-    margin: auto;
+    width: 90%;
+    margin-bottom: auto;
     background-color: #fff
 }
 
