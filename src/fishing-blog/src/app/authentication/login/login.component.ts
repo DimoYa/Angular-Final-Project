@@ -17,7 +17,7 @@ import { emailValidator } from '../utils';
 })
 export class LoginComponent implements OnDestroy {
   errorMessage: string = '';
-  subscription!: Subscription;
+  subscription: Subscription = new Subscription();
 
   loginFormGroup: FormGroup = this.formBuilder.group({
     email: new FormControl('', [Validators.required, emailValidator]),
@@ -31,7 +31,7 @@ export class LoginComponent implements OnDestroy {
   ) {}
 
   ngOnDestroy(): void {
-    this.subscription?.unsubscribe();
+    this.subscription.unsubscribe();
   }
 
   login(): void {
@@ -42,9 +42,8 @@ export class LoginComponent implements OnDestroy {
       password: password,
     };
 
-    this.subscription = this.authenticationService
-      .login$(body)
-      .subscribe((data) => {
+    this.subscription.add(
+      this.authenticationService.login$(body).subscribe((data) => {
         this.authenticationService.authtoken = data['_kmd']['authtoken'];
         localStorage.setItem('authtoken', data['_kmd']['authtoken']);
         localStorage.setItem('username', data['username']);
@@ -54,7 +53,8 @@ export class LoginComponent implements OnDestroy {
           ? localStorage.setItem('isAdmin', 'true')
           : localStorage.setItem('isAdmin', 'false');
         this.router.navigate(['/home']);
-      });
+      })
+    );
   }
 
   get f() {

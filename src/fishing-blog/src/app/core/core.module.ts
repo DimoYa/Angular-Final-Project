@@ -4,8 +4,8 @@ import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { RouterModule } from '@angular/router';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
-import { HandlerInterceptorService } from './interceptors/responseHandler.interceptor';
-import { TokenInterceptor } from './interceptors/token.interceptor';
+import { AuthenticationInterceptor } from './interceptors/authentication.interceptor';
+import { MessageBusInterceptor } from './interceptors/message-bus.interceptor';
 
 @NgModule({
   declarations: [HeaderComponent, FooterComponent],
@@ -19,12 +19,12 @@ export class CoreModule {
       providers: [
         {
           provide: HTTP_INTERCEPTORS,
-          useClass: TokenInterceptor,
+          useClass: AuthenticationInterceptor,
           multi: true,
         },
         {
           provide: HTTP_INTERCEPTORS,
-          useClass: HandlerInterceptorService,
+          useClass: MessageBusInterceptor,
           multi: true,
         },
       ],

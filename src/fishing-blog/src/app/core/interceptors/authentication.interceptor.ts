@@ -9,7 +9,7 @@ import { Observable, throwError } from 'rxjs';
 import { appKey, appSecret } from 'src/app/kinvey.tokens';
 
 @Injectable()
-export class TokenInterceptor implements HttpInterceptor {
+export class AuthenticationInterceptor implements HttpInterceptor {
 
     constructor() { }
 

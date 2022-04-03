@@ -13,7 +13,7 @@ import { tap, catchError } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root',
 })
-export class HandlerInterceptorService implements HttpInterceptor {
+export class MessageBusInterceptor implements HttpInterceptor {
   constructor(public toastService: ToastrService) {}
 
   intercept(

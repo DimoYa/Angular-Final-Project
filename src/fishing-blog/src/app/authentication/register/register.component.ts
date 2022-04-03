@@ -23,7 +23,7 @@ import {
 export class RegisterComponent implements OnDestroy {
   errorMessage: string = '';
   getCodes = ['359', '124', '152'];
-  subscription!: Subscription;
+  subscription: Subscription = new Subscription();
 
   passwordControl = new FormControl(null, [
     Validators.required,
@@ -56,7 +56,7 @@ export class RegisterComponent implements OnDestroy {
   ) {}
 
   ngOnDestroy(): void {
-    this.subscription?.unsubscribe();
+    this.subscription.unsubscribe();
   }
 
   register(): void {
@@ -71,11 +71,11 @@ export class RegisterComponent implements OnDestroy {
       password: passwords.password,
     };
 
-    this.subscription = this.authenticationService
-      .register$(body)
-      .subscribe(() => {
+    this.subscription.add(
+      this.authenticationService.register$(body).subscribe(() => {
         this.router.navigate(['/login']);
-      });
+      })
+    );
   }
 
   get f() {
