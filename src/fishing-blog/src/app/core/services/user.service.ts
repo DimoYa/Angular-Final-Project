@@ -12,21 +12,21 @@ export class UserService {
 
   private readonly baseUrl = environment.apiUrl;
 
-  constructor(private http: HttpClient) { }
+  constructor(private httpClient: HttpClient) { }
 
   updateUser$(usrModel: UserModel, id: string): Observable<UserModel> {
-    return this.http.put<UserModel>(this.baseUrl + `/${id}`, usrModel);
+    return this.httpClient.put<UserModel>(`${this.baseUrl}/${id}`, usrModel);
+  }
+
+  deleteUser$(id: string) : Observable<Object> {
+    return this.httpClient.delete(`${this.baseUrl}/${id}`);
   }
   
-  getUserData$(profileId: string): Observable<UserModel> {
-    return this.http.get<UserModel>(`${this.baseUrl}/${profileId}`);
+  getUser$(profileId: string): Observable<UserModel> {
+    return this.httpClient.get<UserModel>(`${this.baseUrl}/${profileId}`);
   }
 
   getAllUsers$() : Observable<UserModel[]> {
-    return this.http.get<UserModel[]>(`${this.baseUrl}/`);
-  }
-
-  destroy$(Id: string) : Observable<Object> {
-    return this.http.delete(`${this.baseUrl}/${Id}`);
+    return this.httpClient.get<UserModel[]>(`${this.baseUrl}/`);
   }
 }

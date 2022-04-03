@@ -24,8 +24,10 @@ export class MessageBusInterceptor implements HttpInterceptor {
       tap((success) => {
         if (success instanceof HttpResponse) {
           let method = success.url.split('/').pop();
-          method = method.includes('kid') ? 'register' : method;
-          this.toastService.success(`${method} successfully`);
+          if (!/\d/.test(method)) {
+            method = method.includes('kid') ? 'register' : method;
+            this.toastService.success(`${method} successfully`);
+          }
         }
       }),
       catchError((err) => {

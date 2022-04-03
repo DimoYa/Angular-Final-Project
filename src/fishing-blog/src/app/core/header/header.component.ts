@@ -1,25 +1,30 @@
-import { Component } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
 import { AuthenticationService } from '../services/authentication.service';
-import { UserService } from '../services/user.service';
 
 @Component({
   selector: 'app-header',
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css'],
 })
-export class HeaderComponent {
+export class HeaderComponent implements OnDestroy {
   isLogged: boolean;
   isAdmin: boolean;
   avatar: string;
   username: string;
   isExpanded: boolean;
   defaultAvatarPath: string = '../../../assets/profile.png';
+  subscription: Subscription = new Subscription();
 
   constructor(
     private authenticationService: AuthenticationService,
     private router: Router
   ) {}
+
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
+  }
 
   ngDoCheck(): void {
     this.isLogged = this.authenticationService.isLoggedIn();
@@ -31,12 +36,13 @@ export class HeaderComponent {
 
   toggle(): void {
     this.isExpanded = !this.isExpanded;
-    console.log(this.isExpanded);
   }
 
   logout(): void {
-    this.authenticationService.logout$().subscribe(() => {
-      this.router.navigate(['/login']);
-    });
+    this.subscription.add(
+      this.authenticationService.logout$().subscribe(() => {
+        this.router.navigate(['/login']);
+      })
+    );
   }
 }
