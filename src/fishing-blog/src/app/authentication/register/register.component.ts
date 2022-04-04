@@ -21,7 +21,6 @@ import {
   styleUrls: ['./register.component.css'],
 })
 export class RegisterComponent implements OnDestroy {
-  errorMessage: string = '';
   getCodes = ['359', '124', '152'];
   subscription: Subscription = new Subscription();
 
@@ -66,7 +65,8 @@ export class RegisterComponent implements OnDestroy {
     const body = {
       username: email,
       fullname: fullname,
-      phoneNumber: phoneCode + phoneNumber,
+      phoneCode: phoneCode,
+      phoneNumber: phoneNumber,
       photo: photo,
       password: passwords.password,
     };

@@ -23,18 +23,22 @@ body {
 }
 
 
-h1, h2, h3, h4 {
+h1,
+h2,
+h3,
+h4 {
     text-align: center;
     color: #147a9e;
-  }
+}
 
 
-a, button:hover {
+a,
+button:hover {
     cursor: pointer;
 }
 
 .container {
- 
+
     width: 40%;
     margin: 2em auto 1rem;
     padding: .5em;
@@ -43,26 +47,34 @@ a, button:hover {
     background-color: hsla(0, 0%, 94.1%, .8);
     box-shadow: 0 0 1em 0 #000;
     text-align: center;
-  }
+}
 
 /* login, register */
 
 
-.login fieldset, .register fieldset {
+.login fieldset,
+.register fieldset,
+.updateProfile fieldset {
     padding: 0.8em;
 }
 
-.login h2, .register h2 {
+.login h2,
+.register h2,
+.updateProfile h2 {
     padding-top: 0;
     border-bottom: none;
 }
 
-.login p, .register p {
+.login p,
+.register p,
+.updateProfile p {
     padding-bottom: 0;
     padding-top: 1.5rem;
 }
 
-.login input, .register input {
+.login input,
+.register input,
+.updateProfile input {
     flex: 0 1 100%;
     border: 1px solid;
     padding: 0.3em;
@@ -71,11 +83,14 @@ a, button:hover {
     border-bottom-right-radius: 0.3em;
 }
 
-.login select, .register select {
+.login select,
+.register select,
+.updateProfile select  {
     border-color: black;
 }
 
-.login button, .register button {
+.login button,
+.register button {
     border: none;
     border-radius: 0.3em;
     padding: 0.6em 1.2em;
@@ -84,7 +99,9 @@ a, button:hover {
     outline: none;
 }
 
-.login label, .register label {
+.login label,
+.register label,
+.updateProfile label {
     border: 1px solid;
     border-right: none;
     padding: 0.55em;
@@ -93,16 +110,20 @@ a, button:hover {
     margin-bottom: 0;
 }
 
-.login a, .register a {
+.login a,
+.register a,
+.updateProfile a {
     color: #007bff;
 }
 
-
-.register .phoneNumber {
+.register .phoneNumber,
+.updateProfile .phoneNumber {
     padding-right: 0.8em;
 }
 
-.login .field, .register .field {
+.login .field,
+.register .field,
+.updateProfile .field {
     display: flex;
     padding-bottom: 0;
 }
@@ -111,17 +132,19 @@ a, button:hover {
 
 
 input.ng-valid {
-    border-left: 5px solid #42A948; /* green */
-  }
-  
-  input.ng-invalid.ng-touched {
-    border-left: 5px solid #A94442; /* red */
-  }
+    border-left: 5px solid #42A948;
+    /* green */
+}
+
+input.ng-invalid.ng-touched {
+    border-left: 5px solid #A94442;
+    /* red */
+}
 
 .alert-danger {
-  background-color: #bc204b;
-  color: #fff;
-  padding: 0.5em !important;
+    background-color: #bc204b;
+    color: #fff;
+    padding: 0.5em !important;
 }
 
 /* animation */
@@ -132,11 +155,17 @@ input.ng-valid {
     border-top: 16px solid #3498db;
     width: 120px;
     height: 120px;
-    -webkit-animation: spin 2s linear infinite; /* Safari */
+    -webkit-animation: spin 2s linear infinite;
+    /* Safari */
     animation: spin 2s linear infinite;
-  }
-  
-  @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
-  }
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
