@@ -4,6 +4,7 @@ import { Observable, Subscription } from 'rxjs';
 import UserModel from 'src/app/core/models/user-model';
 import { AuthenticationService } from 'src/app/core/services/authentication.service';
 import { UserService } from 'src/app/core/services/user.service';
+import { ConfirmBoxInitializer } from '@costlydeveloper/ngx-awesome-popup';
 
 @Component({
   selector: 'app-profile',
@@ -12,9 +13,7 @@ import { UserService } from 'src/app/core/services/user.service';
 })
 export class ProfileComponent implements OnInit, OnDestroy {
   defaultAvatarPath!: string;
-  currentUser$: Observable<UserModel> = this.userService.getUser$(
-    this.authenticationService.returnId()
-  );
+  currentUser$: Observable<UserModel>;
 
   subscription: Subscription = new Subscription();
 
@@ -26,6 +25,9 @@ export class ProfileComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.defaultAvatarPath = '../../../assets/profile.png';
+    this.currentUser$ = this.userService.getUser$(
+      this.authenticationService.returnId()
+    );
   }
 
   ngOnDestroy(): void {
@@ -37,11 +39,18 @@ export class ProfileComponent implements OnInit, OnDestroy {
   }
 
   deleteUser(userId: string): void {
-    this.subscription.add(
-      this.userService.deleteUser$(userId).subscribe(() => {
-        this.authenticationService.handleLogout();
-        this.router.navigate(['/home']);
-      })
-    );
+    const confirmBox = new ConfirmBoxInitializer();
+    confirmBox.setTitle('Are you sure that you want to delete your account');
+    confirmBox.setButtonLabels('YES', 'NO');
+
+    const subscription = confirmBox.openConfirmBox$().subscribe((resp) => {
+      if (resp.success) {
+        this.userService.deleteUser$(userId).subscribe(() => {
+          this.authenticationService.handleLogout();
+          this.router.navigate(['/home']);
+        });
+      }
+      subscription.unsubscribe();
+    });
   }
 }

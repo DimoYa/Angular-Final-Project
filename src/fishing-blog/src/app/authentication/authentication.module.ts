@@ -7,6 +7,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AuthenticationRoutingModule } from './authentication-routing.module';
 import { ProfileComponent } from './profile/profile.component';
 import { ProfileUpdateComponent } from './profile-update/profile-update.component';
+import { ConfirmBoxConfigModule, NgxAwesomePopupModule, DialogConfigModule } from '@costlydeveloper/ngx-awesome-popup';
 
 
 
@@ -22,7 +23,10 @@ import { ProfileUpdateComponent } from './profile-update/profile-update.componen
     RouterModule,
     FormsModule,
     ReactiveFormsModule,
-    AuthenticationRoutingModule
+    AuthenticationRoutingModule,
+    ConfirmBoxConfigModule.forRoot(),
+    NgxAwesomePopupModule.forRoot(),
+    DialogConfigModule.forRoot(),
   ]
 })
 export class AuthenticationModule { }

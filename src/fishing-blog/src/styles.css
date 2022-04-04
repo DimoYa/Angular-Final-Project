@@ -2,6 +2,7 @@
 @import url('./assets/layout.css');
 @import url('./assets/responsive.css');
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
+@import "../node_modules/@costlydeveloper/ngx-awesome-popup/styles/theme.css";
 
 body {
     max-width: 1366px;

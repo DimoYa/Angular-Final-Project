@@ -24,7 +24,7 @@
                 <p class="field field-icon">
                     <label for="phoneNumber"><span><i class="fas fa-phone"></i></span></label>
                     <select style="max-width: 120px;" formControlName="phoneCode">
-                        <option  class="dropdown-item" *ngFor="let code of getCodes" [ngValue]="code">{{code}}</option>
+                        <option class="dropdown-item" *ngFor="let code of getCodes" [ngValue]="code">{{code}}</option>
                     </select>
                     <input formControlName="phoneNumber" placeholder="Phone number" type="text"
                         [(ngModel)]="userData.phoneNumber">
@@ -45,8 +45,7 @@
 
 
                 <div class="buttons">
-                    <button type="submit" class="btn btn-warning" (ngClick)="cancel()">
-                        Cancel </button>
+                    <button class="btn btn-warning" (click)="cancel()">Cancel </button>
                     &nbsp;
                     <button type="submit" class="btn btn-primary " [disabled]="updateUserForm.invalid">
                         Update Account </button>
