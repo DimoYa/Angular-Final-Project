@@ -16,7 +16,6 @@ import { emailValidator } from '../utils';
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnDestroy {
-  errorMessage: string = '';
   subscription: Subscription = new Subscription();
 
   loginFormGroup: FormGroup = this.formBuilder.group({

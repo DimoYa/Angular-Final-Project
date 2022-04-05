@@ -50,32 +50,24 @@ button:hover {
     text-align: center;
 }
 
-/* login, register */
+/* form */
 
 
-.login fieldset,
-.register fieldset,
-.updateProfile fieldset {
+form fieldset {
     padding: 0.8em;
 }
 
-.login h2,
-.register h2,
-.updateProfile h2 {
+form h2 {
     padding-top: 0;
     border-bottom: none;
 }
 
-.login p,
-.register p,
-.updateProfile p {
+form p {
     padding-bottom: 0;
     padding-top: 1.5rem;
 }
 
-.login input,
-.register input,
-.updateProfile input {
+form input, form textarea {
     flex: 0 1 100%;
     border: 1px solid;
     padding: 0.3em;
@@ -84,14 +76,11 @@ button:hover {
     border-bottom-right-radius: 0.3em;
 }
 
-.login select,
-.register select,
-.updateProfile select  {
+form select  {
     border-color: black;
 }
 
-.login button,
-.register button {
+form button {
     border: none;
     border-radius: 0.3em;
     padding: 0.6em 1.2em;
@@ -100,9 +89,7 @@ button:hover {
     outline: none;
 }
 
-.login label,
-.register label,
-.updateProfile label {
+form label {
     border: 1px solid;
     border-right: none;
     padding: 0.55em;
@@ -111,9 +98,7 @@ button:hover {
     margin-bottom: 0;
 }
 
-.login a,
-.register a,
-.updateProfile a {
+form a {
     color: #007bff;
 }
 
@@ -122,9 +107,7 @@ button:hover {
     padding-right: 0.8em;
 }
 
-.login .field,
-.register .field,
-.updateProfile .field {
+form .field {
     display: flex;
     padding-bottom: 0;
 }
@@ -132,13 +115,13 @@ button:hover {
 /* errors  */
 
 
-input.ng-valid {
+input.ng-valid, textarea.ng-valid {
     border-left: 5px solid #42A948;
     /* green */
 }
 
-input.ng-invalid.ng-touched {
-    border-left: 5px solid #A94442;
+input.ng-invalid.ng-touched, textarea.ng-invalid.ng-touched {
+    border-left: 5px solid #bc204b;
     /* red */
 }
 

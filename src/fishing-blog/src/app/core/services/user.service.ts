@@ -9,7 +9,7 @@ import UserModel from '../models/user-model';
 })
 export class UserService {
 
-  private readonly baseUrl = environment.apiUrl;
+  private readonly baseUrl = environment.apiUserUrl;
 
   constructor(private httpClient: HttpClient) { }
 

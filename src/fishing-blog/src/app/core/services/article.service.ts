@@ -1,49 +1,56 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
+import { AuthenticationService } from './authentication.service';
 import ArticleModel from '../models/article-model';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ArticleService {
-
   constructor(
     private httpClient: HttpClient,
-    ) { }
+    private authenticationService: AuthenticationService
+  ) {}
 
-  private readonly BASE_URL = `https://baas.kinvey.com/appdata/${appKey}`;
-  private readonly ALL_Articles = `${this.BASE_URL}/article?query={}&sort={"_kmd.ect": -1}`;
-  private readonly CREATE_POST = `${this.BASE_URL}/article`;
+  private readonly baseUrl = environment.apiAppUrl;
+  private readonly articleEndPoint = `${this.baseUrl}/article`;
 
-  createArticle(body: Object) {
-    return this.httpClient.post(this.CREATE_POST, body);
+  createArticle$(body: ArticleModel): Observable<ArticleModel> {
+    return this.httpClient.post<ArticleModel>(this.articleEndPoint, body);
   }
 
-  getArticles() {
-    return this.httpClient.get<ArticleModel[]>(this.ALL_Articles);
+  getArticles$(): Observable<ArticleModel[]> {
+    return this.httpClient.get<ArticleModel[]>(
+      `${this.articleEndPoint}?query={}&sort={"_kmd.ect": -1}`
+    );
   }
 
-  getArticleById(id: string) {
-    return this.httpClient.get<ArticleModel>(this.CREATE_POST + `/${id}`);
+  getArticleById$(id: string): Observable<ArticleModel> {
+    return this.httpClient.get<ArticleModel>(
+      `${this.articleEndPoint}?query={}&sort={"_kmd.ect": -1}'}/${id}`
+    );
   }
 
-  getUserArticles() {
-    return this.httpClient
-      .get<Article[]>(`${this.BASE_URL}/article?query={"author":"${localStorage.getItem('username')}"}&sort={"_kmd.ect": -1}`);
+  getUserArticles$(): Observable<ArticleModel[]> {
+    const currentUser = this.authenticationService.returnUserName();
+    return this.httpClient.get<ArticleModel[]>(
+      `${this.baseUrl}/article?query={"author":"${currentUser}"}&sort={"_kmd.ect": -1}`
+    );
   }
 
-  getArticlesByTitle(title: string) {
-
-    let id = `${this.BASE_URL}/article?query={"headline":"${title}"}&sort={"_kmd.ect": -1}`;
-    return this.httpClient
-      .get<Article[]>(id);
+  getArticlesByTitle$(title: string): Observable<ArticleModel[]> {
+    return this.httpClient.get<ArticleModel[]>(
+      `${this.baseUrl}/article?query={"headline":"${title}"}&sort={"_kmd.ect": -1}`
+    );
   }
 
-  deleteArticle(id: string) {
-    return this.httpClient.delete(this.CREATE_POST + `/${id}`);
+  deleteArticle$(id: string): Observable<Object> {
+    return this.httpClient.delete(`${this.articleEndPoint}/${id}`);
   }
 
-  editArticle(body: Object, id: string) {
-    return this.httpClient.put(this.CREATE_POST + `/${id}`, body);
+  editArticle$(body: Object, id: string) {
+    return this.httpClient.put(`${this.articleEndPoint}/${id}`, body);
   }
 }

@@ -1,7 +1,7 @@
 import Base from "./base-model";
 
 interface ArticleModel extends Base {
-    url: string;
+    author: string;
     header: string;
     content: string;
     image: string;

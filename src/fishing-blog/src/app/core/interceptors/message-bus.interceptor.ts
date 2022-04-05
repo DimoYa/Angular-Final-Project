@@ -26,7 +26,7 @@ export class MessageBusInterceptor implements HttpInterceptor {
           if (req.method === 'POST') {
             let method = success.url.split('/').pop();
             method = method.includes('kid') ? 'register' : method;
-            this.toastService.success(`${method} successfully`);
+            this.toastService.success(`${method} successfully ${method == 'article' ? 'created': ''}`);
           }
           if (req.method === 'DELETE') {
             this.toastService.success('Successfully deleted');

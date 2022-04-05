@@ -6,7 +6,8 @@ import { appKey } from "src/app/kinvey.tokens";
 
 export const environment = {
   production: false,
-  apiUrl: `https://baas.kinvey.com/user/${appKey}`
+  apiUserUrl: `https://baas.kinvey.com/user/${appKey}`,
+  apiAppUrl: `https://baas.kinvey.com/appdata/${appKey}`
 };
 
 /*

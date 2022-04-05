@@ -11,6 +11,7 @@ import { HeaderComponent } from './core/header/header.component';
 import { FooterComponent } from './core/footer/footer.component';
 import { AuthenticationModule } from './authentication/authentication.module';
 import { ToastrModule } from 'ngx-toastr';
+import { ArticleModule } from './feature/article/article.module';
 
 
 
@@ -26,7 +27,8 @@ import { ToastrModule } from 'ngx-toastr';
     CoreModule.forRoot(),
     AppRoutingModule,
     PagesModule,
-    AuthenticationModule
+    AuthenticationModule,
+    ArticleModule
   ],
   providers: [],
   bootstrap: [

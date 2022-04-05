@@ -10,7 +10,7 @@ import UserModel from '../models/user-model';
 })
 export class AuthenticationService {
 
-  private readonly baseUrl = environment.apiUrl;
+  private readonly baseUrl = environment.apiUserUrl;
 
 
   currentAuthtoken: string;
