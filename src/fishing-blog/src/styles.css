@@ -112,6 +112,10 @@ form .field {
     padding-bottom: 0;
 }
 
+#buttons > a, #buttons > button {
+    margin: 20px 10px;
+  }
+
 /* errors  */
 
 
