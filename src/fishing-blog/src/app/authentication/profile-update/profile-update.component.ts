@@ -15,7 +15,6 @@ export class ProfileUpdateComponent implements OnInit {
 
   getCodes = ['359', '124', '152'];
   id: string;
-  email: string;
   userData!: UserModel;
 
   constructor(
@@ -30,7 +29,6 @@ export class ProfileUpdateComponent implements OnInit {
     this.userService.getUser$(this.id)
       .subscribe(data => {
         this.userData = data;
-        this.email = this.userData['email'];
         this.updateUserForm.controls['phoneCode'].setValue(this.userData.phoneCode);
       });
   }
@@ -43,17 +41,16 @@ export class ProfileUpdateComponent implements OnInit {
   });
 
   updateUser(): void {
-    const body = this.updateUserForm.value;
-    body['email'] = this.email;
+    const body : UserModel = this.updateUserForm.value;
     this.userService.updateUser$(body, this.id)
       .subscribe(() => {
         localStorage['photo'] = body['photo'];
-        this.router.navigate(['/profile']);
+        this.router.navigate(['/user/profile']);
       });
   };
 
   cancel(): void {
-    this.router.navigate(['/profile']);
+    this.router.navigate(['/user/profile']);
   }
 
   get f() {

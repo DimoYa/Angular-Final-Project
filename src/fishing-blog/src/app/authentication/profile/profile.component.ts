@@ -35,7 +35,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
   }
 
   updateUser(userId: string): void {
-    this.router.navigate([`/profile/edit/${userId}`]);
+    this.router.navigate([`/user/profile/edit/${userId}`]);
   }
 
   deleteUser(userId: string): void {

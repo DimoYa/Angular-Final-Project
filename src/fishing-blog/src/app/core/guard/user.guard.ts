@@ -11,6 +11,12 @@ export class UserGuard implements CanActivate {
     if (this.authenticationService.isLoggedIn()) {
       return true;
     }
-    return this.router.createUrlTree(['/login'])
+    return this.router.createUrlTree(['/user/login'])
+  }
+  canLoad(): boolean | UrlTree {
+    if (this.authenticationService.isLoggedIn()) {
+      return true;
+    }
+    return this.router.createUrlTree(['/user/login'])
   }
 }

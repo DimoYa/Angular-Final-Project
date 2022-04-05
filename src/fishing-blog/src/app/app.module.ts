@@ -9,11 +9,8 @@ import { CoreModule } from './core/core.module';
 import { PagesModule } from './feature/pages/pages.module';
 import { HeaderComponent } from './core/header/header.component';
 import { FooterComponent } from './core/footer/footer.component';
-import { AuthenticationModule } from './authentication/authentication.module';
 import { ToastrModule } from 'ngx-toastr';
-import { ArticleModule } from './feature/article/article.module';
-
-
+import { ConfirmBoxConfigModule, NgxAwesomePopupModule, DialogConfigModule } from '@costlydeveloper/ngx-awesome-popup';
 
 @NgModule({
   declarations: [
@@ -23,12 +20,13 @@ import { ArticleModule } from './feature/article/article.module';
     BrowserModule,
     HttpClientModule,
     ToastrModule.forRoot(),
-    RouterModule,
+    ConfirmBoxConfigModule.forRoot(),
+    NgxAwesomePopupModule.forRoot(),
+    DialogConfigModule.forRoot(),
     CoreModule.forRoot(),
-    AppRoutingModule,
+    RouterModule,
     PagesModule,
-    AuthenticationModule,
-    ArticleModule
+    AppRoutingModule,
   ],
   providers: [],
   bootstrap: [

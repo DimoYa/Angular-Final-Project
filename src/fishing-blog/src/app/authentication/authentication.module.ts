@@ -7,9 +7,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AuthenticationRoutingModule } from './authentication-routing.module';
 import { ProfileComponent } from './profile/profile.component';
 import { ProfileUpdateComponent } from './profile-update/profile-update.component';
-import { ConfirmBoxConfigModule, NgxAwesomePopupModule, DialogConfigModule } from '@costlydeveloper/ngx-awesome-popup';
-
-
 
 @NgModule({
   declarations: [
@@ -24,9 +21,6 @@ import { ConfirmBoxConfigModule, NgxAwesomePopupModule, DialogConfigModule } fro
     FormsModule,
     ReactiveFormsModule,
     AuthenticationRoutingModule,
-    ConfirmBoxConfigModule.forRoot(),
-    NgxAwesomePopupModule.forRoot(),
-    DialogConfigModule.forRoot(),
   ]
 })
 export class AuthenticationModule { }
