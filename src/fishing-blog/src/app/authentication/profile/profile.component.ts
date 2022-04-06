@@ -14,14 +14,15 @@ import { ConfirmBoxInitializer } from '@costlydeveloper/ngx-awesome-popup';
 export class ProfileComponent implements OnInit, OnDestroy {
   defaultAvatarPath!: string;
   currentUser$: Observable<UserModel>;
-
   subscription: Subscription = new Subscription();
+
+  private readonly confirmMsg = 'Are you sure that you want to delete your account?';
 
   constructor(
     private authenticationService: AuthenticationService,
     private userService: UserService,
     private router: Router
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.defaultAvatarPath = '../../../assets/profile.png';
@@ -40,17 +41,16 @@ export class ProfileComponent implements OnInit, OnDestroy {
 
   deleteUser(userId: string): void {
     const confirmBox = new ConfirmBoxInitializer();
-    confirmBox.setTitle('Are you sure that you want to delete your account');
+    confirmBox.setTitle(this.confirmMsg);
     confirmBox.setButtonLabels('YES', 'NO');
 
-    const subscription = confirmBox.openConfirmBox$().subscribe((resp) => {
+    this.subscription.add(confirmBox.openConfirmBox$().subscribe((resp) => {
       if (resp.success) {
-        this.userService.deleteUser$(userId).subscribe(() => {
+        this.subscription.add(this.userService.deleteUser$(userId).subscribe(() => {
           this.authenticationService.handleLogout();
           this.router.navigate(['/home']);
-        });
+        }));
       }
-      subscription.unsubscribe();
-    });
+    }));
   }
 }
