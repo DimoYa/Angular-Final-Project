@@ -12,7 +12,8 @@
             </div>
             <div class="flex">
                 <p>Phone: </p>
-                <p>+{{user.phoneCode}} {{user.phoneNumber}}</p>
+                <p *ngIf="user.phoneNumber">+{{user.phoneCode}} {{user.phoneNumber}}</p>
+                <p *ngIf="!user.phoneNumber"></p>
             </div>
             <hr>
             <div id="buttons">

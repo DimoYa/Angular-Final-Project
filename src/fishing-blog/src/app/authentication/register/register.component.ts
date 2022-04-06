@@ -73,7 +73,9 @@ export class RegisterComponent implements OnDestroy {
 
     this.subscription.add(
       this.authenticationService.register$(body).subscribe(() => {
-        this.router.navigate(['/user/login']);
+        this.authenticationService.login$(body).subscribe(({username, password}) => {
+          this.router.navigate(['/home']);
+        })
       })
     );
   }

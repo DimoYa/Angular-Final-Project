@@ -28,11 +28,11 @@
     
             <ng-container *ngIf="f['fullname'].touched && f['fullname'].invalid">
                 <p *ngIf="f['fullname'].errors['required']" class="alert-danger">
-                    Fullname is required!
+                    Full name is required!
                 </p>
     
                 <p *ngIf="f['fullname'].errors['fullname']" class="alert-danger">
-                    Fullname input field must contain two names (letters only) separated by a space!
+                    Full name input field must contain two names (letters only) separated by a space!
                 </p>
             </ng-container>
     
@@ -73,7 +73,7 @@
                         Password is required!
                     </p>
                     <p *ngIf="passwordsGroup.controls['password'].errors['minlength']" class="alert-danger">
-                        Password must be at least 4 characters!
+                        Password must be at least {{f['password'].errors['minlength'].requiredLength}} characters!
                     </p>
                 </ng-container>
     
