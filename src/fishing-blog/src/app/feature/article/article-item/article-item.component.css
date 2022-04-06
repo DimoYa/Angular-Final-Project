@@ -1,0 +1,19 @@
+img {
+    width: 15em;
+    height: 15em;
+    margin: auto;
+    display: block;
+}
+
+.text-dark {
+    font-style: italic;
+}
+span {
+    font-weight: bold;
+}
+
+button {
+    color: #fff;
+    background-color: #0069d9;
+    border-color: #0062cc;
+}

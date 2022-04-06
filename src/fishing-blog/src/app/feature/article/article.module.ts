@@ -1,19 +1,25 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ArticleService } from 'src/app/core/services/article.service';
+import { ArticleService } from '../../core/services/article.service';
 import { ArticleCreateComponent } from './article-create/article-create.component';
 import { ArticleRoutingModule } from './article-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ArticleItemComponent } from './article-item/article-item.component';
+import { ArticleListComponent } from './article-list/article-list.component';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 
 
 @NgModule({
   declarations: [
-    ArticleCreateComponent
+    ArticleCreateComponent,
+    ArticleItemComponent,
+    ArticleListComponent
   ],
   imports: [
     CommonModule,
     FormsModule,
+    SharedModule,
     ReactiveFormsModule,
     ArticleRoutingModule
   ],

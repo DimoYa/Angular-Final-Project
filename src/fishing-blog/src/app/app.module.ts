@@ -11,6 +11,7 @@ import { HeaderComponent } from './core/header/header.component';
 import { FooterComponent } from './core/footer/footer.component';
 import { ToastrModule } from 'ngx-toastr';
 import { ConfirmBoxConfigModule, NgxAwesomePopupModule, DialogConfigModule } from '@costlydeveloper/ngx-awesome-popup';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -26,6 +27,7 @@ import { ConfirmBoxConfigModule, NgxAwesomePopupModule, DialogConfigModule } fro
     CoreModule.forRoot(),
     RouterModule,
     PagesModule,
+    SharedModule,
     AppRoutingModule,
   ],
   providers: [],
