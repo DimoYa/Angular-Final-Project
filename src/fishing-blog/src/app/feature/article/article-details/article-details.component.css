@@ -1,0 +1,9 @@
+img, .article-content, .menu {
+    width: 80%;
+    margin: auto;
+    display: block;
+}
+
+.container {
+    width: 60%;
+}

@@ -48,7 +48,7 @@ export class ArticleCreateComponent implements OnDestroy {
 
     this.subscription.add(
       this.articleService.createArticle$(body).subscribe(() => {
-        this.router.navigate(['/article/artice-list']);
+        this.router.navigate(['/article/list']);
       })
     );
   }

@@ -1,0 +1,31 @@
+<div class="container article">
+    <ng-template [ngIf]="article">
+        <h4 class="panel-title">{{article.headline}}</h4>
+        <div class="mb-2"><img *ngIf="article.image" alt="image" src="{{article.image}}"></div>
+       <div class="d-flex flex-column align-items-start menu">
+        <div *ngIf="article._kmd['ect']== article._kmd['lmt']" class="mb-1 text-muted small"><b>Created by:</b>
+            <span class="fa fa-pencil p-1"> {{article.author}}</span>
+         </div>
+         <div *ngIf="article._kmd['ect']!= article._kmd['lmt']" class="mb-1 text-muted small"><b>Modified by:</b>
+            <span class="fas fa-pencil p-1"> {{article.modified}}</span>
+         </div>
+         <div *ngIf="article._kmd['ect']== article._kmd['lmt']" class="mb-1 text-muted small"><b>Published:</b>
+            <span class="fas fa-calendar p-1"> {{article._kmd['ect'] | date: 'fullDate'}}</span>
+            <span class="fas fa-clock-o p-1">{{article._kmd['ect'] | date: 'HH:mm'}}</span></div>
+         <div *ngIf="article._kmd['ect']!= article._kmd['lmt']" class="mb-1 text-muted small"><b>Modified:</b>
+            <span class="fa fa-calendar p-1">{{article._kmd['lmt'] | date: 'fullDate'}}</span>
+            <span class="fa fa-clock-o p-1">{{article._kmd['lmt'] | date: 'HH:mm'}}</span></div>
+       </div>
+        <hr class="menu mb-1 mt-1">
+        <div class="article-content">
+            <p class="text-justify">{{article.content}}</p>
+        </div>
+        <div *ngIf="canModify(article)" id="buttons">
+            <button type="button" class="btn btn-success" routerLink="/article/list/{{article._id}}/edit">Edit
+                article</button>
+            &nbsp;
+            <button type="button" class="btn btn-danger" (click)="deleteArticle(article._id)">Delete
+                article</button>
+        </div>
+    </ng-template>
+</div>

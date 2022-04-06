@@ -7,6 +7,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ArticleItemComponent } from './article-item/article-item.component';
 import { ArticleListComponent } from './article-list/article-list.component';
 import { SharedModule } from 'src/app/shared/shared.module';
+import { ArticleDetailsComponent } from './article-details/article-details.component';
 
 
 
@@ -14,7 +15,8 @@ import { SharedModule } from 'src/app/shared/shared.module';
   declarations: [
     ArticleCreateComponent,
     ArticleItemComponent,
-    ArticleListComponent
+    ArticleListComponent,
+    ArticleDetailsComponent
   ],
   imports: [
     CommonModule,

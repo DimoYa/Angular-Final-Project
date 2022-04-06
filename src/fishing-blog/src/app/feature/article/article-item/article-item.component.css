@@ -1,15 +1,7 @@
 img {
-    width: 15em;
-    height: 15em;
-    margin: auto;
+    max-width: 18em;
+    max-height: 18em;
     display: block;
-}
-
-.text-dark {
-    font-style: italic;
-}
-span {
-    font-weight: bold;
 }
 
 button {

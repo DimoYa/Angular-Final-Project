@@ -29,7 +29,7 @@ export class ArticleService {
 
   getArticleById$(id: string): Observable<ArticleModel> {
     return this.httpClient.get<ArticleModel>(
-      `${this.articleEndPoint}?query={}&sort={"_kmd.ect": -1}'}/${id}`
+      `${this.articleEndPoint}/${id}`
     );
   }
 
