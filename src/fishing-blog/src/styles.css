@@ -70,7 +70,6 @@ form input, form textarea {
     flex: 0 1 100%;
     border: 1px solid;
     padding: 0.3em;
-    border-left: 0.3em solid green;
     border-top-right-radius: 0.3em;
     border-bottom-right-radius: 0.3em;
 }
@@ -118,15 +117,17 @@ form .field {
 /* errors  */
 
 
-input.ng-valid, textarea.ng-valid {
+input.ng-valid.ng-dirty, textarea.ng-valid.ng-dirty {
     border-left: 5px solid #42A948;
     /* green */
 }
 
-input.ng-invalid.ng-touched, textarea.ng-invalid.ng-touched {
+input.ng-invalid.ng-dirty, input.ng-invalid.ng-touched, textarea.ng-invalid.ng-dirty, textarea.ng-invalid.ng-touched {
     border-left: 5px solid #bc204b;
     /* red */
 }
+
+
 
 .alert-danger {
     background-color: #bc204b;
