@@ -1,0 +1,18 @@
+<form [formGroup]="commentForm" (submit)="addComment()">
+    <h5 class="label">Add comment</h5>
+    <fieldset>
+        <!-- content -->
+        <p class="d-flex flex-row align-items-start">
+            <textarea class="form-control ml-1 shadow-none textarea" rows="3" formControlName="content"
+                placeholder="Enter yout content here"></textarea>
+        </p>
+        <ng-container *ngIf="f['content'].touched && f['content'].invalid">
+            <p *ngIf="f['content'].errors['required']" class="alert alert-danger">
+                Content is required!
+            </p>
+        </ng-container>
+
+        <button type="submit" class="btn btn-primary btn-sm" [disabled]="commentForm.invalid"> Submit comment
+        </button>
+    </fieldset>
+</form>

@@ -12,7 +12,7 @@ import { AuthenticationService } from 'src/app/core/services/authentication.serv
   styleUrls: ['./article-details.component.css'],
 })
 export class ArticleDetailsComponent implements OnInit, OnDestroy {
-  @Input('article') article: ArticleModel;
+  article: ArticleModel;
 
   subscription: Subscription = new Subscription();
   id: string;
@@ -67,5 +67,9 @@ export class ArticleDetailsComponent implements OnInit, OnDestroy {
         })
       );
     }
+  }
+
+  loadComments() :void {
+    
   }
 }

@@ -1,0 +1,9 @@
+form {
+    margin: auto;
+    padding-bottom: 0px;
+    width: 90%;
+}
+
+textarea {
+    resize: none
+}

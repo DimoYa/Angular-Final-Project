@@ -28,9 +28,7 @@ export class ArticleService {
   }
 
   getArticleById$(id: string): Observable<ArticleModel> {
-    return this.httpClient.get<ArticleModel>(
-      `${this.articleEndPoint}/${id}`
-    );
+    return this.httpClient.get<ArticleModel>(`${this.articleEndPoint}/${id}`);
   }
 
   getUserArticles$(): Observable<ArticleModel[]> {
@@ -46,11 +44,16 @@ export class ArticleService {
     );
   }
 
-  deleteArticle$(id: string): Observable<Object> {
-    return this.httpClient.delete(`${this.articleEndPoint}/${id}`);
+  deleteArticle$(id: string): Observable<ArticleModel> {
+    return this.httpClient.delete<ArticleModel>(
+      `${this.articleEndPoint}/${id}`
+    );
   }
 
-  editArticle$(body: Object, id: string) {
-    return this.httpClient.put(`${this.articleEndPoint}/${id}`, body);
+  editArticle$(body: ArticleModel, id: string) {
+    return this.httpClient.put<ArticleModel>(
+      `${this.articleEndPoint}/${id}`,
+      body
+    );
   }
 }

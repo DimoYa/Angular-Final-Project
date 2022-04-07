@@ -9,6 +9,7 @@ import { ArticleListComponent } from './article-list/article-list.component';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { ArticleDetailsComponent } from './article-details/article-details.component';
 import { ArticleEditComponent } from './article-edit/article-edit.component';
+import { CommentCreateComponent } from './comment/comment-create/comment-create.component';
 
 
 
@@ -18,7 +19,8 @@ import { ArticleEditComponent } from './article-edit/article-edit.component';
     ArticleItemComponent,
     ArticleListComponent,
     ArticleDetailsComponent,
-    ArticleEditComponent
+    ArticleEditComponent,
+    CommentCreateComponent
   ],
   imports: [
     CommonModule,
