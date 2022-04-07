@@ -9,33 +9,35 @@ import { AuthenticationService } from 'src/app/core/services/authentication.serv
 @Component({
   selector: 'app-article-details',
   templateUrl: './article-details.component.html',
-  styleUrls: ['./article-details.component.css']
+  styleUrls: ['./article-details.component.css'],
 })
 export class ArticleDetailsComponent implements OnInit, OnDestroy {
-
   @Input('article') article: ArticleModel;
 
   subscription: Subscription = new Subscription();
   id: string;
-  currentuserId: string;
+  currentuserName: string;
   isAdmin: boolean;
 
   constructor(
     private articleService: ArticleService,
     private authenticationService: AuthenticationService,
     private router: Router,
-    private route: ActivatedRoute) { }
-    private readonly confirmMsg = 'Are you sure that you want to delete the article?';
-
+    private route: ActivatedRoute
+  ) {}
+  private readonly confirmMsg =
+    'Are you sure that you want to delete the article?';
 
   ngOnInit(): void {
-    this.subscription.add(this.route.params.subscribe(data => {
-      this.id = data['articleId'];
-      this.articleService.getArticleById$(this.id).subscribe((data) => {
-        this.article = data;
+    this.subscription.add(
+      this.route.params.subscribe((data) => {
+        this.id = data['articleId'];
+        this.articleService.getArticleById$(this.id).subscribe((data) => {
+          this.article = data;
+        });
       })
-    }));
-    this.currentuserId = this.authenticationService.returnId();
+    );
+    this.currentuserName = this.authenticationService.returnUserName();
     this.isAdmin = this.authenticationService.isAdmin();
   }
 
@@ -44,21 +46,26 @@ export class ArticleDetailsComponent implements OnInit, OnDestroy {
   }
 
   canModify(article: ArticleModel): boolean {
-    return article._acl['creator'] === this.currentuserId || this.isAdmin;
+    return article.author === this.currentuserName || this.isAdmin;
   }
 
-  deleteArticle(id: string) {
+  deleteArticle(id: string): void {
     const confirmBox = new ConfirmBoxInitializer();
     confirmBox.setTitle(this.confirmMsg);
     confirmBox.setButtonLabels('YES', 'NO');
 
-    this.subscription.add(confirmBox.openConfirmBox$().subscribe((resp) => {
-      if (resp.success) {
-        this.subscription.add(this.articleService.deleteArticle$(id)
-        .subscribe(() => {
-          this.router.navigate(['/article/list']);
-        }));
-      }
-    }));
+    if (this.canModify(this.article)) {
+      this.subscription.add(
+        confirmBox.openConfirmBox$().subscribe((resp) => {
+          if (resp.success) {
+            this.subscription.add(
+              this.articleService.deleteArticle$(id).subscribe(() => {
+                this.router.navigate(['/article/list']);
+              })
+            );
+          }
+        })
+      );
+    }
   }
 }

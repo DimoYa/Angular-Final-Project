@@ -21,7 +21,7 @@
             <p class="text-justify">{{article.content}}</p>
         </div>
         <div *ngIf="canModify(article)" id="buttons">
-            <button type="button" class="btn btn-success" routerLink="/article/list/{{article._id}}/edit">Edit
+            <button type="button" class="btn btn-success" (click)="deleteArticle(article._id)">Edit
                 article</button>
             &nbsp;
             <button type="button" class="btn btn-danger" (click)="deleteArticle(article._id)">Delete
