@@ -7,7 +7,7 @@
                 <!-- fullname -->
                 <p class="field field-icon">
                     <label for="fullname"><span><i class="fas fa-user"></i></span></label>
-                    <input formControlName="fullname" placeholder="Full Name" [(ngModel)]="userData.fullname">
+                    <input formControlName="fullname" placeholder="Full Name" [ngModel]="userData.fullname">
                 </p>
 
                 <ng-container *ngIf="f['fullname'].touched && f['fullname'].invalid">
@@ -27,7 +27,7 @@
                         <option class="dropdown-item" *ngFor="let code of getCodes" [ngValue]="code">{{code}}</option>
                     </select>
                     <input formControlName="phoneNumber" placeholder="Phone number" type="text"
-                        [(ngModel)]="userData.phoneNumber">
+                        [ngModel]="userData.phoneNumber">
                 </p>
 
                 <ng-container *ngIf="f['phoneNumber'].touched && f['phoneNumber'].invalid">
@@ -40,7 +40,7 @@
                 <!-- photo -->
                 <p class="field field-icon">
                     <label for="fullname"><span><i class="fa fa-image"></i></span></label>
-                    <input formControlName="photo" placeholder="Add image link" [(ngModel)]="userData.photo">
+                    <input formControlName="photo" placeholder="Add image link" [ngModel]="userData.photo">
                 </p>
 
 

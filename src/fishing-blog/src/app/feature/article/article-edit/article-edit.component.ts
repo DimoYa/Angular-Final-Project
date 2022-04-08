@@ -67,6 +67,10 @@ export class ArticleEditComponent implements OnInit {
     return this.editArticleForm.controls;
   }
 
+  cancel():void {
+    this.router.navigate([`/article/list/${this.id}`]);
+  }
+
   get invalid() {
     return this.editArticleForm.invalid;
   }

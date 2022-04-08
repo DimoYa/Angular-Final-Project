@@ -40,7 +40,9 @@ export class ArticleDetailsComponent implements OnInit, OnDestroy {
         this.articleService.getArticleById$(this.id).subscribe((data) => {
           this.article = data;
 
-          this.comments$ = this.commentService.getAllCommentsByArticle$(this.id);
+          this.comments$ = this.commentService.getAllCommentsByArticle$(
+            this.id
+          );
         });
       })
     );
@@ -76,15 +78,16 @@ export class ArticleDetailsComponent implements OnInit, OnDestroy {
     }
   }
 
-  loadComments(): void {
-    this.comments$ = this.commentService.getAllCommentsByArticle$(this.id);
-  }
-
   deleteComment(id: string): void {
     this.subscription.add(
       this.commentService.deleteComment$(id).subscribe(() => {
-        this.loadComments();
       })
     );
+  }
+
+  loadComments(): void {
+    console.log('from child');
+    this.comments$ = this.commentService.getAllCommentsByArticle$(this.id);
+    this.isExpanded = true;
   }
 }

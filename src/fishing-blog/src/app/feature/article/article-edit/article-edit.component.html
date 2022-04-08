@@ -42,7 +42,11 @@
                     type="text" name="image" id="image" placeholder="Add image link" [(ngModel)]="article.image">
             </p>
 
-            <button class="btn btn-primary btn-block" [disabled]="editArticleForm.invalid">Update article</button>
+            <div class="buttons">
+                <button class="btn btn-warning btn-block" (click)="cancel()">Cancel </button>
+                &nbsp;
+                <button class="btn btn-primary btn-block" [disabled]="editArticleForm.invalid">Update article</button>
+            </div>
         </fieldset>
     </div>
 </form>
