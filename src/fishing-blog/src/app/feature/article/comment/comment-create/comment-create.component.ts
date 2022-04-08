@@ -47,6 +47,7 @@ export class CommentCreateComponent implements OnDestroy {
     const body: CommentModel = this.commentForm.value;
     body.articleId = this.articleId;
     body.author = this.authenticationService.returnUserName();
+    body.authorPicture = this.authenticationService.returnUserPhoto();
 
     this.subscription.add(
       this.commentService.addComment$(this.commentForm.value).subscribe(() => {

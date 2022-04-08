@@ -1,0 +1,18 @@
+<div class="card mb-4">
+    <div class="card-body">
+        <p>{{comment.content}}</p>
+
+        <div class="d-flex justify-content-between">
+            <div class="d-flex flex-row align-items-center">
+                <img [src]="comment.authorPicture === '' ? defaultAvatarPath : comment.authorPicture" alt="avatar"
+                    width="25" height="25" />
+                <p class="small mb-0 ms-2">{{comment.author}}</p>
+                <i class="fa-solid fa-trash-can"></i>
+            </div>
+            <div *ngIf="canModify" class="d-flex flex-row align-items-center">
+                <i class="fas fa-edit mx-2 fa-xs text-black" title="edit comment"></i>
+                <i class="far fa-trash-alt mx-2 fa-xs text-black" (click)="deleteComment(comment._id)" title="delete comment"></i>
+              </div>
+        </div>
+    </div>
+</div>

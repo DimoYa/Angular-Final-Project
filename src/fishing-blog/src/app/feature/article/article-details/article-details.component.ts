@@ -1,10 +1,12 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ConfirmBoxInitializer } from '@costlydeveloper/ngx-awesome-popup';
-import { Subscription } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 import ArticleModel from 'src/app/core/models/article-model';
+import CommentModel from 'src/app/core/models/comment-model';
 import { ArticleService } from 'src/app/core/services/article.service';
 import { AuthenticationService } from 'src/app/core/services/authentication.service';
+import { CommentService } from 'src/app/core/services/comment.service';
 
 @Component({
   selector: 'app-article-details',
@@ -13,14 +15,17 @@ import { AuthenticationService } from 'src/app/core/services/authentication.serv
 })
 export class ArticleDetailsComponent implements OnInit, OnDestroy {
   article: ArticleModel;
+  comments$: Observable<CommentModel[]>;
 
   subscription: Subscription = new Subscription();
   id: string;
   currentuserName: string;
   isAdmin: boolean;
+  isExpanded = false;
 
   constructor(
     private articleService: ArticleService,
+    private commentService: CommentService,
     private authenticationService: AuthenticationService,
     private router: Router,
     private route: ActivatedRoute
@@ -34,6 +39,8 @@ export class ArticleDetailsComponent implements OnInit, OnDestroy {
         this.id = data['articleId'];
         this.articleService.getArticleById$(this.id).subscribe((data) => {
           this.article = data;
+
+          this.comments$ = this.commentService.getAllCommentsByArticle$(this.id);
         });
       })
     );
@@ -69,7 +76,15 @@ export class ArticleDetailsComponent implements OnInit, OnDestroy {
     }
   }
 
-  loadComments() :void {
-    
+  loadComments(): void {
+    this.comments$ = this.commentService.getAllCommentsByArticle$(this.id);
+  }
+
+  deleteComment(id: string): void {
+    this.subscription.add(
+      this.commentService.deleteComment$(id).subscribe(() => {
+        this.loadComments();
+      })
+    );
   }
 }
