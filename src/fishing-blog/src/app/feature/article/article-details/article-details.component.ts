@@ -69,7 +69,9 @@ export class ArticleDetailsComponent implements OnInit, OnDestroy {
           if (resp.success) {
             this.subscription.add(
               this.articleService.deleteArticle$(id).subscribe(() => {
-                this.router.navigate(['/article/list']);
+                  this.commentService.deleteAllCommentsByArticle$(id).subscribe(() => {
+                    this.router.navigate(['/article/list']);
+                  });
               })
             );
           }

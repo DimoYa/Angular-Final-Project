@@ -29,6 +29,12 @@ export class CommentService {
     );
   }
 
+  deleteAllCommentsByArticle$(articleId: string): Observable<CommentModel[]> {
+    return this.httpClient.delete<CommentModel[]>(
+      `${this.commentEndPoint}?query={"articleId":"${articleId}"}`
+    );
+  }
+
   getCommentById$(id: string): Observable<CommentModel> {
     return this.httpClient.get<CommentModel>(`${this.commentEndPoint}/${id}`);
   }
