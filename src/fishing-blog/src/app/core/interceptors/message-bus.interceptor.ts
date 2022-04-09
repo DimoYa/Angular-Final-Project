@@ -22,7 +22,7 @@ export class MessageBusInterceptor implements HttpInterceptor {
   ): Observable<HttpEvent<any>> {
     return next.handle(req).pipe(
       tap((success) => {
-        if (success instanceof HttpResponse && req.method !== 'GET') {
+        if (success instanceof HttpResponse && req.method !== 'GET' && !success.url.includes('query')) {
           if (req.method === 'POST') {
             let method = success.url.split('/').pop();
             method = method.includes('kid') ? 'register' : method;
