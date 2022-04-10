@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
@@ -18,7 +18,12 @@ export class ArticleService {
   private readonly articleEndPoint = `${this.baseUrl}/article`;
 
   createArticle$(body: ArticleModel): Observable<ArticleModel> {
-    return this.httpClient.post<ArticleModel>(this.articleEndPoint, body);
+    return this.httpClient.post<ArticleModel>(this.articleEndPoint, body, {
+      headers: new HttpHeaders().set(
+        'Response',
+        'Article created successfully'
+      ),
+    });
   }
 
   getArticles$(): Observable<ArticleModel[]> {
@@ -46,14 +51,26 @@ export class ArticleService {
 
   deleteArticle$(id: string): Observable<ArticleModel> {
     return this.httpClient.delete<ArticleModel>(
-      `${this.articleEndPoint}/${id}`
+      `${this.articleEndPoint}/${id}`,
+      {
+        headers: new HttpHeaders().set(
+          'Response',
+          'Article deleted successfully'
+        ),
+      }
     );
   }
 
   editArticle$(body: ArticleModel, id: string) {
     return this.httpClient.put<ArticleModel>(
       `${this.articleEndPoint}/${id}`,
-      body
+      body,
+      {
+        headers: new HttpHeaders().set(
+          'Response',
+          'Article updated successfully'
+        ),
+      }
     );
   }
 }

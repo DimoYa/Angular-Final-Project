@@ -21,18 +21,11 @@ export class MessageBusInterceptor implements HttpInterceptor {
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
     return next.handle(req).pipe(
-      tap((success) => {
-        if (success instanceof HttpResponse && req.method !== 'GET' && !success.url.includes('query')) {
-          if (req.method === 'POST') {
-            let method = success.url.split('/').pop();
-            method = method.includes('kid') ? 'register' : method;
-            this.toastService.success(`${method} successfully ${method == 'article' ? 'created': ''}`);
-          }
-          if (req.method === 'DELETE') {
-            this.toastService.success('Successfully deleted');
-          }
-          if (req.method === 'PUT') {
-            this.toastService.success('Successfully updated');
+      tap((event) => {
+        if (event instanceof HttpResponse) {
+          const responseMsg = req.headers.getAll('response');
+          if (responseMsg) {
+            this.toastService.success(responseMsg[0])
           }
         }
       }),

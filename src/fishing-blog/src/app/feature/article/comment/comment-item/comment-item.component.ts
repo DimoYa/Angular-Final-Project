@@ -91,7 +91,7 @@ export class CommentItemComponent implements OnInit {
     body.likes = this.comment.likes;
 
     this.subscription.add(
-      this.commentService.editComment$(body, commentId).subscribe(() => {
+      this.commentService.editComment$(body, commentId, 'updated').subscribe(() => {
         this.articleCommentEmitter.emit();
         this.editMode = false;
       })
@@ -103,7 +103,7 @@ export class CommentItemComponent implements OnInit {
     body.likes.push(this.currentuserId);
 
     this.subscription.add(
-      this.commentService.editComment$(body, commentId).subscribe(() => {
+      this.commentService.editComment$(body, commentId, 'liked').subscribe(() => {
         this.articleCommentEmitter.emit();
       })
     );
@@ -114,7 +114,7 @@ export class CommentItemComponent implements OnInit {
     const index = body.likes.indexOf(this.currentuserId);
     body.likes.splice(index, 1);
     this.subscription.add(
-      this.commentService.editComment$(body, commentId).subscribe(() => {
+      this.commentService.editComment$(body, commentId, 'disliked').subscribe(() => {
         this.articleCommentEmitter.emit();
       })
     );

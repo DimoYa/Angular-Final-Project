@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
@@ -29,15 +29,30 @@ export class AuthenticationService {
   }
 
   login$(body): Observable<UserModel> {
-    return this.httpClient.post<UserModel>(`${this.baseUrl}/login`, body);
+    return this.httpClient.post<UserModel>(`${this.baseUrl}/login`, body, {
+      headers: new HttpHeaders().set(
+        'Response',
+        'Login successfully'
+      ),
+    });
   }
 
   register$(body): Observable<UserModel> {
-    return this.httpClient.post<UserModel>(`${this.baseUrl}`, body);
+    return this.httpClient.post<UserModel>(`${this.baseUrl}`, body, {
+      headers: new HttpHeaders().set(
+        'Response',
+        'Register successfully'
+      ),
+    });
   }
 
   logout$() : Observable<Object> {
-    return this.httpClient.post(`${this.baseUrl}/_logout`, {});
+    return this.httpClient.post(`${this.baseUrl}/_logout`, {}, {
+      headers: new HttpHeaders().set(
+        'Response',
+        'Logout successfully'
+      ),
+    });
   }
 
   isLoggedIn(): boolean {
