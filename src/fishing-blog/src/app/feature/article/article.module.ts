@@ -11,6 +11,7 @@ import { ArticleDetailsComponent } from './article-details/article-details.compo
 import { ArticleEditComponent } from './article-edit/article-edit.component';
 import { CommentCreateComponent } from './comment/comment-create/comment-create.component';
 import { CommentItemComponent } from './comment/comment-item/comment-item.component';
+import { ArticleMineComponent } from './article-mine/article-mine.component';
 
 
 
@@ -22,7 +23,8 @@ import { CommentItemComponent } from './comment/comment-item/comment-item.compon
     ArticleDetailsComponent,
     ArticleEditComponent,
     CommentCreateComponent,
-    CommentItemComponent
+    CommentItemComponent,
+    ArticleMineComponent
   ],
   imports: [
     CommonModule,

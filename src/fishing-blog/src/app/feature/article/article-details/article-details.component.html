@@ -37,10 +37,10 @@
                     <app-comment-create [articleId]="article._id" (articleCommentEmitter)="loadComments()">
                     </app-comment-create>
 
-                    <div class="mt-5">
+                    <div *ngIf="(comments$ | async)?.length" class="mt-5">
                         <button class="accordion-button" (click)="isExpanded=!isExpanded" type="button" data-toggle="collapse"
                             data-target="#collapse" aria-expanded="false" aria-controls="collapseExample"
-                            *ngIf="(comments$ | async)?.length">
+                            >
                             <span *ngIf="isExpanded==false">Show comments</span>
                             <span *ngIf="isExpanded==true">Hide comments</span>
                         </button>
