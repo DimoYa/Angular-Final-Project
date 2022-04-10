@@ -80,15 +80,7 @@ export class ArticleDetailsComponent implements OnInit, OnDestroy {
     }
   }
 
-  deleteComment(id: string): void {
-    this.subscription.add(
-      this.commentService.deleteComment$(id).subscribe(() => {
-      })
-    );
-  }
-
   loadComments(): void {
-    console.log('from child');
     this.comments$ = this.commentService.getAllCommentsByArticle$(this.id);
     this.isExpanded = true;
   }

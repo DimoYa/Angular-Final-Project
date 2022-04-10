@@ -19,10 +19,13 @@ import { CommentService } from 'src/app/core/services/comment.service';
 export class CommentItemComponent implements OnInit {
   @Input() comment: CommentModel;
   @Output() articleCommentEmitter = new EventEmitter<void>();
-  
+
   currentuserName: string;
+  currentuserId: string;
   isAdmin: boolean;
   canModify!: boolean;
+  canLike!: boolean;
+  canDislike!: boolean;
   editMode: boolean = false;
   defaultAvatarPath!: string;
   subscription: Subscription = new Subscription();
@@ -42,10 +45,18 @@ export class CommentItemComponent implements OnInit {
 
   ngOnInit(): void {
     this.currentuserName = this.authenticationService.returnUserName();
+    this.currentuserId = this.authenticationService.returnId();
     this.isAdmin = this.authenticationService.isAdmin();
 
     this.canModify =
       this.comment.author === this.currentuserName || this.isAdmin;
+
+    this.canLike =
+      !this.comment.likes.includes(this.currentuserId) &&
+      this.comment.author !== this.currentuserName;
+
+      this.canDislike =
+      this.comment.likes.includes(this.currentuserId);
 
     this.defaultAvatarPath = '../../../../assets/profile.png';
   }
@@ -74,14 +85,37 @@ export class CommentItemComponent implements OnInit {
 
   editComment(commentId: string, articleId: string): void {
     const body: CommentModel = this.editCommentForm.value;
-    body.author = this.authenticationService.returnUserName();
+    body.author = this.currentuserName;
     body.authorPicture = this.authenticationService.returnUserPhoto();
     body.articleId = articleId;
+    body.likes = this.comment.likes;
 
     this.subscription.add(
       this.commentService.editComment$(body, commentId).subscribe(() => {
         this.articleCommentEmitter.emit();
         this.editMode = false;
+      })
+    );
+  }
+
+  likeComment(commentId: string): void {
+    const body = this.comment;
+    body.likes.push(this.currentuserId);
+
+    this.subscription.add(
+      this.commentService.editComment$(body, commentId).subscribe(() => {
+        this.articleCommentEmitter.emit();
+      })
+    );
+  }
+
+  dislikeComment(commentId: string): void {
+    const body = this.comment;
+    const index = body.likes.indexOf(this.currentuserId);
+    body.likes.splice(index, 1);
+    this.subscription.add(
+      this.commentService.editComment$(body, commentId).subscribe(() => {
+        this.articleCommentEmitter.emit();
       })
     );
   }

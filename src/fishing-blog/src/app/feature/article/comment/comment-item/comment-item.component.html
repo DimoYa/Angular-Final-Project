@@ -9,21 +9,29 @@
                         width="25" height="25" />
                     <p class="small mb-0 ms-2 text-muted small"><i class="fas fa-user"></i> {{comment.author}}</p>
 
-                    <p *ngIf="comment._kmd['ect']=== comment._kmd['lmt']" class="small mb-0 ms-2 text-muted small"><b class="mb-1">posted:</b>:
+                    <p *ngIf="comment._kmd['ect'] === comment._kmd['lmt']" class="small mb-0 ms-2 text-muted small"><b
+                            class="mb-1">posted:</b>:
                         <span class="fas fa-calendar p-1"> {{comment._kmd['ect'] | date: 'dd/MM/yyyy'}} </span>
                         <span class="fa fa-clock-o p-1"> {{comment._kmd['ect'] | date: 'HH:mm'}}</span>
                     </p>
-                    <p *ngIf="comment._kmd['ect']!== comment._kmd['lmt']" class="small mb-0 ms-2 text-muted small"><b class="mb-1">edited:</b>:
+                    <p *ngIf="comment._kmd['ect']!== comment._kmd['lmt']" class="small mb-0 ms-2 text-muted small"><b
+                            class="mb-1">edited:</b>:
                         <span class="fas fa-calendar p-1"> {{comment._kmd['lmt'] | date: 'dd/MM/yyyy'}} </span>
                         <span class="fa fa-clock-o p-1"> {{comment._kmd['lmt'] | date: 'HH:mm'}}</span>
                     </p>
                 </div>
-                <div *ngIf="canModify" class="d-flex flex-row align-items-center">
-                    <i class="fas fa-edit mx-2 fa-xs text-black" (click)="editMode = true" title="edit comment"></i>
-                    <i class="far fa-trash-alt mx-2 fa-xs text-black" (click)="deleteComment(comment._id)"
-                        title="delete comment"></i>
+                <div class="d-flex flex-row align-items-center">
+                    <i *ngIf="canModify" class="fas fa-edit mx-2 fa-xs text-black" (click)="editMode = true"
+                        title="edit comment"></i>
+                    <i *ngIf="canModify" class="far fa-trash-alt mx-2 fa-xs text-black"
+                        (click)="deleteComment(comment._id)" title="delete comment"></i>
+                    <i *ngIf="canLike" class="fa fa-thumbs-o-up mx-2 fa-xs text-black" (click)="likeComment(comment._id)"
+                        title="like comment"></i>
+                    <i *ngIf="canDislike" class="fa fa-thumbs-o-down mx-2 fa-xs text-black"
+                        (click)="dislikeComment(comment._id)" title="dislike comment"></i>
                 </div>
             </div>
+            <p class="small mb-0 pt-2 text-muted small">likes: {{comment.likes.length}}</p>
         </div>
     </div>
     <form *ngIf="editMode" class="mb-3" [formGroup]="editCommentForm"

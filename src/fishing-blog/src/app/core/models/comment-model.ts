@@ -6,5 +6,6 @@ interface CommentModel extends Base {
     author: string;
     authorPicture: string;
     articleId: string;
+    likes: string[];
 }
 export default CommentModel;
