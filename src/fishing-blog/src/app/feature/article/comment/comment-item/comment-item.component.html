@@ -31,7 +31,7 @@
                         (click)="dislikeComment(comment._id)" title="dislike comment"></i>
                 </div>
             </div>
-            <p class="small mb-0 pt-2 text-muted small">likes: {{comment.likes.length}}</p>
+            <p class="small mb-0 pt-2 text-muted small"><b>Likes:</b> {{comment.likes.length}}</p>
         </div>
     </div>
     <form *ngIf="editMode" class="mb-3" [formGroup]="editCommentForm"

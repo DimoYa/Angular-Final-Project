@@ -15,7 +15,7 @@ export class CommentService {
 
   getAllCommentsByArticle$(articleId: string): Observable<CommentModel[]> {
     return this.httpClient.get<CommentModel[]>(
-      `${this.commentEndPoint}?query={"articleId":"${articleId}"}&sort={"_kmd.ect": -1}`
+      `${this.commentEndPoint}?query={"articleId":"${articleId}"}&sort={"likes.length": -1}`
     );
   }
 
