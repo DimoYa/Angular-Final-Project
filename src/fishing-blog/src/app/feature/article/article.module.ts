@@ -12,6 +12,7 @@ import { ArticleEditComponent } from './article-edit/article-edit.component';
 import { CommentCreateComponent } from './comment/comment-create/comment-create.component';
 import { CommentItemComponent } from './comment/comment-item/comment-item.component';
 import { ArticleMineComponent } from './article-mine/article-mine.component';
+import { MatPaginatorModule } from '@angular/material/paginator';
 
 
 
@@ -31,7 +32,8 @@ import { ArticleMineComponent } from './article-mine/article-mine.component';
     FormsModule,
     SharedModule,
     ReactiveFormsModule,
-    ArticleRoutingModule
+    ArticleRoutingModule,
+    MatPaginatorModule,
   ],
   providers: [
     ArticleService,

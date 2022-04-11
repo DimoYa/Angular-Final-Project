@@ -1,20 +1,40 @@
-import { Component, OnInit } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import ArticleModel from 'src/app/core/models/article-model';
 import { ArticleService } from 'src/app/core/services/article.service';
+import { PageEvent } from '@angular/material/paginator';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-article-list',
   templateUrl: './article-list.component.html',
-  styleUrls: ['./article-list.component.css']
+  styleUrls: ['./article-list.component.css'],
 })
-export class ArticleListComponent implements OnInit {
+export class ArticleListComponent implements OnInit, OnDestroy {
+  articles!: ArticleModel[];
+  pageSlice!: ArticleModel[];
+  subscription: Subscription = new Subscription();
 
-  articles$: Observable<ArticleModel[]>;
+  constructor(private articleService: ArticleService) {}
 
-  constructor(private articleService: ArticleService) { }
+  ngOnInit(): void {
+    this.subscription.add(
+      this.articleService.getArticles$().subscribe((data) => {
+        this.articles = data;
+        this.pageSlice = this.articles.slice(0, 3);
+      })
+    );
+  }
 
-  ngOnInit() {
-    this.articles$ = this.articleService.getArticles$();
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
+  }
+
+  public OnPageChange(event: PageEvent) {
+    const startIndex = event.pageIndex * event.pageSize;
+    let endIndex = startIndex + event.pageSize;
+    if (endIndex > this.articles.length) {
+      endIndex = this.articles.length;
+    }
+    this.pageSlice = this.articles.slice(startIndex, endIndex);
   }
 }

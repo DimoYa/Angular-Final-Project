@@ -22,7 +22,7 @@ export class ArticleCreateComponent implements OnDestroy {
   articleCreateFormGroup: FormGroup = this.formBuilder.group({
     headline: new FormControl(null, [
       Validators.required,
-      Validators.maxLength(40),
+      Validators.maxLength(50),
     ]),
     content: new FormControl(null, [
       Validators.required,
