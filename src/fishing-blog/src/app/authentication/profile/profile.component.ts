@@ -13,6 +13,7 @@ import { ConfirmBoxInitializer } from '@costlydeveloper/ngx-awesome-popup';
 })
 export class ProfileComponent implements OnInit, OnDestroy {
   defaultAvatarPath!: string;
+  isAdmin!: boolean;
   currentUser$: Observable<UserModel>;
   subscription: Subscription = new Subscription();
 
@@ -29,6 +30,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
     this.currentUser$ = this.userService.getUser$(
       this.authenticationService.returnId()
     );
+    this.isAdmin = this.authenticationService.isAdmin();
   }
 
   ngOnDestroy(): void {

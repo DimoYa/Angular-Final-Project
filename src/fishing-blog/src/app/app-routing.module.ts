@@ -19,6 +19,10 @@ const routes: Routes = [
     loadChildren: () => import('./authentication/authentication.module').then(m => m.AuthenticationModule)
 },
 {
+    path: 'admin',
+    loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule)
+},
+{
     path: 'article',
     loadChildren: () => import('./feature/article/article.module').then(m => m.ArticleModule), canLoad: [ UserGuard ] 
 },
