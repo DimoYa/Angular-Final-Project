@@ -50,7 +50,7 @@ The application is a Fishing blog/forum app that will be used for articles and d
 
 # Used technologies and packages
 
-* [Angular](https://angular.io/docs)
+* [Angular v 13.2.0](https://angular.io/docs)
 * [Kinvey console](https://console.kinvey.com/login)
 * [Angular animations](https://angular.io/guide/animations)
 * [Angular Material](https://material.angular.io/)
@@ -58,3 +58,10 @@ The application is a Fishing blog/forum app that will be used for articles and d
 * [Angular Toastr](https://ngx-toastr.vercel.app/)
 * [Font Awesome](https://fontawesome.com/docs)
 * [Bootstrap](https://getbootstrap.com/docs/5.1/getting-started/introduction/)
+
+# Get started
+
+```
+ng serve
+```
+* Navigate to [http://localhost:4200/](http://localhost:4200/)
