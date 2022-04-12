@@ -65,3 +65,7 @@ The application is a Fishing blog/forum app that will be used for articles and d
 ng serve
 ```
 * Navigate to [http://localhost:4200/](http://localhost:4200/)
+
+# Deployment
+
+Application is deployed on Heroku: https://more-for-fishing.herokuapp.com/
