@@ -17,20 +17,20 @@ export class AdminService {
     return this.httpClient.get<UserModel[]>(`${this.baseUrl}/`);
   }
 
-  suspendUser$(id: string): Observable<Object> {
-    return this.httpClient.delete(`${this.baseUrl}/${id}?soft=true`, {
+  suspendUser$(id: string): Observable<UserModel> {
+    return this.httpClient.delete<UserModel>(`${this.baseUrl}/${id}?soft=true`, {
       headers: new HttpHeaders().set(
         'Response',
-        'User suspended successfully'
+        'User disabled successfully'
       ),
     });
   }
 
-  restoreUser$(id: string): Observable<Object> {
-    return this.httpClient.post(`${this.baseUrl}/${id}/_restore`, {
+  restoreUser$(id: string): Observable<UserModel> {
+    return this.httpClient.post<UserModel>(`${this.baseUrl}/${id}/_restore`, {
       headers: new HttpHeaders().set(
         'Response',
-        'User restored successfully'
+        'User enabled successfully'
       ),
     });
   }

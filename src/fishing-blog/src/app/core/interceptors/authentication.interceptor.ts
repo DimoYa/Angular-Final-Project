@@ -31,6 +31,7 @@ export class AuthenticationInterceptor implements HttpInterceptor {
         setHeaders: {
           Authorization: `Basic ${btoa(`${appKey}:${appMasterSecret}`)}`,
           'Content-Type': 'application/json',
+          'Response': 'User enabled successfully'
         },
       });
     } else {
