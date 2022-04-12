@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
 import UserModel from 'src/app/core/models/user-model';
 import { AdminService } from 'src/app/core/services/admin.service';
 
@@ -7,20 +8,36 @@ import { AdminService } from 'src/app/core/services/admin.service';
   templateUrl: './admin-user-management.component.html',
   styleUrls: ['./admin-user-management.component.css']
 })
-export class AdminUserManagementComponent implements OnInit {
+export class AdminUserManagementComponent implements OnInit, OnDestroy {
 
   users!: UserModel[];
+  subscription: Subscription = new Subscription();
 
   constructor(private adminService: AdminService) { }
 
   ngOnInit(): void {
-    this.adminService.getAllUsers$().subscribe((data) => {
+    this.subscription.add(this.adminService.getAllUsers$().subscribe((data) => {
       this.users = data;
-      console.log(this.users);
-    })
+    }))
   }
 
-  deleteUser(userId: string): void {
+  ngOnDestroy(): void {
+    this.subscription.unsubscribe();
+  }
 
+  disableUser(userId: string): void {
+    this.subscription.add(this.adminService.suspendUser$(userId).subscribe(() => {
+      this.subscription.add(this.adminService.getAllUsers$().subscribe((data) => {
+        this.users = data;
+      }))
+    }));
+  }
+
+  enableUser(userId: string): void {
+    this.subscription.add(this.adminService.restoreUser$(userId).subscribe(() => {
+      this.subscription.add(this.adminService.getAllUsers$().subscribe((data) => {
+        this.users = data;
+      }))
+    }));
   }
 }

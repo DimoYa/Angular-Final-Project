@@ -7,13 +7,13 @@ import {
 } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, tap, throwError } from 'rxjs';
-import { appKey, appSecret } from 'src/app/kinvey.tokens';
+import { appKey, appSecret, appMasterSecret } from 'src/app/kinvey.tokens';
 import UserModel from '../models/user-model';
 import { AuthenticationService } from '../services/authentication.service';
 
 @Injectable()
 export class AuthenticationInterceptor implements HttpInterceptor {
-  constructor(private authenticationService: AuthenticationService) {}
+  constructor(private authenticationService: AuthenticationService) { }
 
   intercept(
     request: HttpRequest<any>,
@@ -23,6 +23,13 @@ export class AuthenticationInterceptor implements HttpInterceptor {
       request = request.clone({
         setHeaders: {
           Authorization: `Basic ${btoa(`${appKey}:${appSecret}`)}`,
+          'Content-Type': 'application/json',
+        },
+      });
+    } else if (request.url.endsWith('_restore')) {
+      request = request.clone({
+        setHeaders: {
+          Authorization: `Basic ${btoa(`${appKey}:${appMasterSecret}`)}`,
           'Content-Type': 'application/json',
         },
       });

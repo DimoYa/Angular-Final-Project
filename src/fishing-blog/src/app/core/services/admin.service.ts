@@ -17,7 +17,7 @@ export class AdminService {
     return this.httpClient.get<UserModel[]>(`${this.baseUrl}/`);
   }
 
-  suspendUser$(id: string) : Observable<Object> {
+  suspendUser$(id: string): Observable<Object> {
     return this.httpClient.delete(`${this.baseUrl}/${id}?soft=true`, {
       headers: new HttpHeaders().set(
         'Response',
@@ -26,8 +26,8 @@ export class AdminService {
     });
   }
 
-  restoreUser$(id: string) : Observable<Object> {
-    return this.httpClient.delete(`${this.baseUrl}/${id}/_restore`, {
+  restoreUser$(id: string): Observable<Object> {
+    return this.httpClient.post(`${this.baseUrl}/${id}/_restore`, {
       headers: new HttpHeaders().set(
         'Response',
         'User restored successfully'

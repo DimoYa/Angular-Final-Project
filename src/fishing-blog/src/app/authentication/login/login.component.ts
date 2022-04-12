@@ -42,7 +42,7 @@ export class LoginComponent implements OnDestroy {
     };
 
     this.subscription.add(
-      this.authenticationService.login$(body).subscribe((data) => {
+      this.authenticationService.login$(body).subscribe(() => {
         this.router.navigate(['/home']);
       })
     );
