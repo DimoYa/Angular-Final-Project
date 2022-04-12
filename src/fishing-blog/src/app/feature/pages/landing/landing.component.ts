@@ -10,6 +10,7 @@ export class LandingComponent {
  
   isLogged = this.authenticationService.isLoggedIn();
   isAdmin = this.authenticationService.isAdmin();
+  userId = this.authenticationService.returnId();
 
   constructor(private authenticationService: AuthenticationService) { }
 }
