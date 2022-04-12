@@ -1,30 +1,30 @@
 # Description
  
-The application is a Fishing blog/forum app that will be used for fishing articles and discussions.
+The application is a Fishing blog/forum app that will be used for articles and discussions.
 
 # Users and functionalities
 
 ## Guest Users 
 
-* They can register and login to the application and access the public part of [LandingPage]
+* Guest users can register and login to the application and access the public part of [LandingPage]
 
 ![image](https://user-images.githubusercontent.com/25158666/163018781-4527c9a9-5e7f-41f1-bfb3-2ae784183f0e.png)
 
 ## Logged in user
 
-* They can view, update or delete their own prifle
+* They can view, update or delete their own profile information
 * They can create, update or delete their own articles
 * They can create, update or delete their own comments on each article
-* They can like/dislike each comment left by other users
+* They can like/dislike each comment left by other users on an article
 
 ![image](https://user-images.githubusercontent.com/25158666/163018634-2788f620-bff1-4e6f-899c-5e976b3d7bb0.png)
 
 ## Logged in admin user
 
-* They can do everything ordinary user can
-* They can update or delete every article in the application
-* They can update or delete every comment in the article
-* They can update or disable every registered user in the application
+* it can do everything ordinary user can
+* it can update or delete every article in the application
+* it can update or delete every comment on an article
+* it can disable/enable every registered user in the application
 
 ![image](https://user-images.githubusercontent.com/25158666/163019827-09d15738-a2d1-48b2-995c-bd2ef947adcf.png)
 
@@ -42,7 +42,7 @@ The application is a Fishing blog/forum app that will be used for fishing articl
 
 # Responsive design
 
-* Applicaiton is design to work on mobile devices and tablet view
+* Applicaiton is design to work on mobile and tablet devices 
 
 ![image](https://user-images.githubusercontent.com/25158666/163045603-63cde21e-c5a0-476c-865d-17fed4d92e2e.png)
 
