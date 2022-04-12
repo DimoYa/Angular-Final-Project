@@ -7,31 +7,32 @@ import UserModel from '../models/user-model';
 @Injectable({
   providedIn: 'root'
 })
-export class UserService {
+export class AdminService {
 
   private readonly baseUrl = environment.apiUserUrl;
 
   constructor(private httpClient: HttpClient) { }
 
-  updateUser$(usrModel: UserModel, id: string): Observable<UserModel> {
-    return this.httpClient.put<UserModel>(`${this.baseUrl}/${id}`, usrModel, {
+  getAllUsers$(): Observable<UserModel[]> {
+    return this.httpClient.get<UserModel[]>(`${this.baseUrl}/`);
+  }
+
+  suspendUser$(id: string) : Observable<Object> {
+    return this.httpClient.delete(`${this.baseUrl}/${id}?soft=true`, {
       headers: new HttpHeaders().set(
         'Response',
-        'User updated successfully'
+        'User suspended successfully'
       ),
     });
   }
 
-  deleteUser$(id: string) : Observable<Object> {
-    return this.httpClient.delete(`${this.baseUrl}/${id}?hard=true`, {
+  restoreUser$(id: string) : Observable<Object> {
+    return this.httpClient.delete(`${this.baseUrl}/${id}/_restore`, {
       headers: new HttpHeaders().set(
         'Response',
-        'User deleted successfully'
+        'User restored successfully'
       ),
     });
   }
-  
-  getUser$(profileId: string): Observable<UserModel> {
-    return this.httpClient.get<UserModel>(`${this.baseUrl}/${profileId}`);
-  }
+
 }

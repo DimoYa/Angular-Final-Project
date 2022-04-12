@@ -17,8 +17,8 @@
             </div>
             <hr>
             <div id="buttons">
-                <button type="button" class="btn btn-success" (click)="updateUser(user['_id'])">Update my profile</button>
-                <button *ngIf="!isAdmin" type="button" class="btn btn-danger" (click)="deleteUser(user['_id'])">Delete my profile</button>
+                <button type="button" class="btn btn-success" (click)="updateUser()">Update profile</button>
+                <button *ngIf="!isAdmin" type="button" class="btn btn-danger" (click)="deleteUser()">Delete profile</button>
             </div>
         </div>
         

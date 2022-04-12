@@ -45,12 +45,12 @@ export class ProfileUpdateComponent implements OnInit {
     this.userService.updateUser$(body, this.id)
       .subscribe(() => {
         localStorage['photo'] = body['photo'];
-        this.router.navigate(['/user/profile']);
+        this.router.navigate([`/user/profile/${this.id}`]);
       });
   };
 
   cancel(): void {
-    this.router.navigate(['/user/profile']);
+    this.router.navigate([`/user/profile/${this.id}`]);
   }
 
   get f() {

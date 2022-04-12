@@ -13,6 +13,7 @@ export class HeaderComponent implements OnDestroy {
   isAdmin: boolean;
   avatar: string;
   username: string;
+  userId: string;
   isExpanded: boolean;
   defaultAvatarPath: string = '../../../assets/profile.png';
   subscription: Subscription = new Subscription();
@@ -31,6 +32,7 @@ export class HeaderComponent implements OnDestroy {
     this.isAdmin = this.authenticationService.isAdmin();
     this.avatar = this.authenticationService.returnUserPhoto();
     this.username = this.authenticationService.returnUserName();
+    this.userId = this.authenticationService.returnId();
     this.isExpanded = false;
   }
 

@@ -1,1 +1,25 @@
-<p>admin-user-management works!</p>
+<ng-template [ngIf]="users">
+    <div class="container admin">
+      <h3>Admin panel - User management</h3>
+      <ul class="list-group">
+        <li class="list-group-item" *ngFor="let user of users;">
+          <h5>{{user.username}}</h5>
+          <p *ngIf="user._kmd['status'] !== undefined"> <i class="fas fa-ban"></i>Disabled</p>
+          <p *ngIf="user._kmd['roles'] !== undefined && user._kmd['roles'].length != 0"> <i
+              class="fas fa-user-shield"></i>Admin</p>
+          <div id="buttons" *ngIf=" user._kmd['status'] === undefined">
+            <button type="button" class="btn btn-info" [routerLink]="['/user/profile',user._id]">Profile
+              details</button>
+            &nbsp;
+            <button type="button" class="btn btn-success" [routerLink]="['/user/profle/',user._id, 'edit']">Update user
+              info</button>
+            &nbsp;
+            <button *ngIf="user._kmd['roles'] === undefined" type="button" class="btn btn-danger"
+              (click)="deleteUser(user._id)">Disable
+              user</button>
+          </div>
+          <hr>
+        </li>
+      </ul>
+    </div>
+</ng-template>

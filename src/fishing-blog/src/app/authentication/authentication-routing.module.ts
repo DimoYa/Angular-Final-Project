@@ -9,8 +9,8 @@ import { AuthenticatedGuard } from "../core/guard/authenticated.guard";
 const routes: Routes = [
     { path: 'register',canActivate: [AuthenticatedGuard], component: RegisterComponent },
     { path: 'login',canActivate: [AuthenticatedGuard], component: LoginComponent },
-    { path: 'profile',canActivate: [UserGuard], component: ProfileComponent },
-    { path: 'profile/edit/:id',canActivate: [UserGuard], component: ProfileUpdateComponent },
+    { path: 'profile/:id',canActivate: [UserGuard], component: ProfileComponent },
+    { path: 'profile/:id/edit',canActivate: [UserGuard], component: ProfileUpdateComponent },
   ];
   
   export const AuthenticationRoutingModule = RouterModule.forChild(routes);

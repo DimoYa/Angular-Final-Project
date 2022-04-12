@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Observable, Subscription } from 'rxjs';
 import UserModel from 'src/app/core/models/user-model';
 import { AuthenticationService } from 'src/app/core/services/authentication.service';
@@ -15,6 +15,7 @@ export class ProfileComponent implements OnInit, OnDestroy {
   defaultAvatarPath!: string;
   isAdmin!: boolean;
   currentUser$: Observable<UserModel>;
+  userId!: string;
   subscription: Subscription = new Subscription();
 
   private readonly confirmMsg = 'Are you sure that you want to delete your account?';
@@ -22,14 +23,14 @@ export class ProfileComponent implements OnInit, OnDestroy {
   constructor(
     private authenticationService: AuthenticationService,
     private userService: UserService,
-    private router: Router
+    private router: Router,
+    private route: ActivatedRoute,
   ) { }
 
   ngOnInit(): void {
+    this.userId = this.route.snapshot.params['id'];
     this.defaultAvatarPath = '../../../assets/profile.png';
-    this.currentUser$ = this.userService.getUser$(
-      this.authenticationService.returnId()
-    );
+    this.currentUser$ = this.userService.getUser$(this.userId);
     this.isAdmin = this.authenticationService.isAdmin();
   }
 
@@ -37,18 +38,18 @@ export class ProfileComponent implements OnInit, OnDestroy {
     this.subscription.unsubscribe();
   }
 
-  updateUser(userId: string): void {
-    this.router.navigate([`/user/profile/edit/${userId}`]);
+  updateUser(): void {
+    this.router.navigate([`/user/profile/${this.userId}/edit`]);
   }
 
-  deleteUser(userId: string): void {
+  deleteUser(): void {
     const confirmBox = new ConfirmBoxInitializer();
     confirmBox.setTitle(this.confirmMsg);
     confirmBox.setButtonLabels('YES', 'NO');
 
     this.subscription.add(confirmBox.openConfirmBox$().subscribe((resp) => {
       if (resp.success) {
-        this.subscription.add(this.userService.deleteUser$(userId).subscribe(() => {
+        this.subscription.add(this.userService.deleteUser$(this.userId).subscribe(() => {
           this.authenticationService.handleLogout();
           this.router.navigate(['/home']);
         }));

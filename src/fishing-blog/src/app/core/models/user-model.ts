@@ -7,5 +7,6 @@ interface UserModel extends Base {
     phoneCode?: string,
     phoneNumber?: string,
     photo?: string,
+    isDisabled?: boolean
 }
 export default UserModel;
