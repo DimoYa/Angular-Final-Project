@@ -1,6 +1,6 @@
 <ng-template [ngIf]="userData">
-    <form class="updateProfile" [formGroup]="updateUserForm" (ngSubmit)="updateUser()">
-        <div class="container">
+    <form [formGroup]="updateUserForm" (ngSubmit)="updateUser()">
+        <div class="container updateProfile">
             <fieldset>
                 <h3>Update user info - <b>{{userData.username}}</b></h3>
 
