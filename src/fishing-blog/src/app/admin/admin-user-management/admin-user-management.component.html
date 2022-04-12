@@ -2,7 +2,7 @@
   <div class="container admin">
     <h3>Admin panel - User management</h3>
     <ul class="list-group">
-      <li class="list-group-item" *ngFor="let user of users;">
+      <li class="list-group-item" *ngFor="let user of pageSlice;">
         <h5>{{user.username}}</h5>
         <p *ngIf="user._kmd['status'] !== undefined"> <i class="fas fa-ban"></i>Disabled</p>
         <p *ngIf="user._kmd['roles'] !== undefined && user._kmd['roles'].length != 0"> <i
@@ -26,5 +26,8 @@
         <hr>
       </li>
     </ul>
+    <mat-paginator [length]="users.length" [pageSize]="3" [pageSizeOptions]="[3, 6, 9, 100]"
+            aria-label="Select page" (page)="OnPageChange($event)">
+        </mat-paginator>
   </div>
 </ng-template>
