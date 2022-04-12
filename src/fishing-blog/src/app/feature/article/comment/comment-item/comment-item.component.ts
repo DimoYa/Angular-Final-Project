@@ -37,7 +37,7 @@ export class CommentItemComponent implements OnInit {
     private formBuilder: FormBuilder,
     private authenticationService: AuthenticationService,
     private commentService: CommentService
-  ) {}
+  ) { }
 
   editCommentForm: FormGroup = this.formBuilder.group({
     content: new FormControl(null, [Validators.required]),
@@ -55,7 +55,7 @@ export class CommentItemComponent implements OnInit {
       !this.comment.likes.includes(this.currentuserId) &&
       this.comment.author !== this.currentuserName;
 
-      this.canDislike =
+    this.canDislike =
       this.comment.likes.includes(this.currentuserId);
 
     this.defaultAvatarPath = '../../../../assets/profile.png';
@@ -65,7 +65,7 @@ export class CommentItemComponent implements OnInit {
     this.subscription.unsubscribe();
   }
 
-  deleteComment(id: string) {
+  deleteComment(id: string): void {
     const confirmBox = new ConfirmBoxInitializer();
     confirmBox.setTitle(this.confirmMsg);
     confirmBox.setButtonLabels('YES', 'NO');

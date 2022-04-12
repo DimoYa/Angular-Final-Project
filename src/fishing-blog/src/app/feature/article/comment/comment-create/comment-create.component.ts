@@ -36,7 +36,7 @@ export class CommentCreateComponent implements OnDestroy {
     private formBuilder: FormBuilder,
     private commentService: CommentService,
     private authenticationService: AuthenticationService,
-  ) {}
+  ) { }
 
   ngOnDestroy(): void {
     this.subscription.unsubscribe();

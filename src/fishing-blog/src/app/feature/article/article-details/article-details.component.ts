@@ -29,7 +29,7 @@ export class ArticleDetailsComponent implements OnInit, OnDestroy {
     private authenticationService: AuthenticationService,
     private router: Router,
     private route: ActivatedRoute
-  ) {}
+  ) { }
   private readonly confirmMsg =
     'Are you sure that you want to delete the article?';
 
@@ -69,9 +69,9 @@ export class ArticleDetailsComponent implements OnInit, OnDestroy {
           if (resp.success) {
             this.subscription.add(
               this.articleService.deleteArticle$(id).subscribe(() => {
-                  this.commentService.deleteAllCommentsByArticle$(id).subscribe(() => {
-                    this.router.navigate(['/article/list']);
-                  });
+                this.commentService.deleteAllCommentsByArticle$(id).subscribe(() => {
+                  this.router.navigate(['/article/list']);
+                });
               })
             );
           }

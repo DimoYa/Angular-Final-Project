@@ -7,7 +7,7 @@ import { AuthenticationService } from 'src/app/core/services/authentication.serv
   styleUrls: ['./landing.component.css']
 })
 export class LandingComponent {
- 
+
   isLogged = this.authenticationService.isLoggedIn();
   isAdmin = this.authenticationService.isAdmin();
   userId = this.authenticationService.returnId();

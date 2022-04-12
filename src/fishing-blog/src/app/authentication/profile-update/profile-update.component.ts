@@ -5,7 +5,6 @@ import UserModel from 'src/app/core/models/user-model';
 import { UserService } from 'src/app/core/services/user.service';
 import { fullNameValidator, phoneNumberValidator } from '../utils';
 
-
 @Component({
   selector: 'app-profile-update',
   templateUrl: './profile-update.component.html',
@@ -23,7 +22,7 @@ export class ProfileUpdateComponent implements OnInit {
     private fb: FormBuilder,
     private route: ActivatedRoute) {
   }
-  ngOnInit() {
+  ngOnInit(): void {
 
     this.id = this.route.snapshot.params['id'];
     this.userService.getUser$(this.id)
@@ -41,7 +40,7 @@ export class ProfileUpdateComponent implements OnInit {
   });
 
   updateUser(): void {
-    const body : UserModel = this.updateUserForm.value;
+    const body: UserModel = this.updateUserForm.value;
     this.userService.updateUser$(body, this.id)
       .subscribe(() => {
         localStorage['photo'] = body['photo'];

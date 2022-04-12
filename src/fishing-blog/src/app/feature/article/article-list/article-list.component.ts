@@ -14,7 +14,7 @@ export class ArticleListComponent implements OnInit, OnDestroy {
   pageSlice!: ArticleModel[];
   subscription: Subscription = new Subscription();
 
-  constructor(private articleService: ArticleService) {}
+  constructor(private articleService: ArticleService) { }
 
   ngOnInit(): void {
     this.subscription.add(
@@ -29,7 +29,7 @@ export class ArticleListComponent implements OnInit, OnDestroy {
     this.subscription.unsubscribe();
   }
 
-  public OnPageChange(event: PageEvent) {
+  public OnPageChange(event: PageEvent): void {
     const startIndex = event.pageIndex * event.pageSize;
     let endIndex = startIndex + event.pageSize;
     if (endIndex > this.articles.length) {

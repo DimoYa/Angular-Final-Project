@@ -52,7 +52,7 @@ export class RegisterComponent implements OnDestroy {
     private formBuilder: FormBuilder,
     private authenticationService: AuthenticationService,
     private router: Router
-  ) {}
+  ) { }
 
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
@@ -73,7 +73,7 @@ export class RegisterComponent implements OnDestroy {
 
     this.subscription.add(
       this.authenticationService.register$(body).subscribe(() => {
-          this.router.navigate(['user/login']);
+        this.router.navigate(['user/login']);
       })
     );
   }

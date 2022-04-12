@@ -16,7 +16,7 @@ export class ArticleItemComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private authenticationService: AuthenticationService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.isAdmin = this.authenticationService.isAdmin();

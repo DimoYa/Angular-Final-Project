@@ -28,7 +28,7 @@ export class ArticleEditComponent implements OnInit {
     private router: Router,
     private articleService: ArticleService,
     private authenticationService: AuthenticationService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.subscription.add(
@@ -67,7 +67,7 @@ export class ArticleEditComponent implements OnInit {
     return this.editArticleForm.controls;
   }
 
-  cancel():void {
+  cancel(): void {
     this.router.navigate([`/article/list/${this.id}`]);
   }
 

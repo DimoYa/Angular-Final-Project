@@ -6,8 +6,6 @@ import { LandingComponent } from './landing/landing.component';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-
-
 @NgModule({
   declarations: [
     LandingComponent,

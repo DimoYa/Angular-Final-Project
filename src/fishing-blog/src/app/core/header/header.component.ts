@@ -21,7 +21,7 @@ export class HeaderComponent implements OnDestroy {
   constructor(
     private authenticationService: AuthenticationService,
     private router: Router
-  ) {}
+  ) { }
 
   ngOnDestroy(): void {
     this.subscription.unsubscribe();

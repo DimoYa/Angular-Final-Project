@@ -36,14 +36,14 @@ export class ArticleCreateComponent implements OnDestroy {
     private articleService: ArticleService,
     private authenticationService: AuthenticationService,
     private router: Router
-  ) {}
+  ) { }
 
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
   }
 
-  createArticle() {
-    const body : ArticleModel = this.articleCreateFormGroup.value;
+  createArticle(): void {
+    const body: ArticleModel = this.articleCreateFormGroup.value;
     body.author = this.authenticationService.returnUserName();
 
     this.subscription.add(

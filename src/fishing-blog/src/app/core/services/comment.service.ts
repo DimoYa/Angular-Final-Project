@@ -8,7 +8,7 @@ import CommentModel from '../models/comment-model';
   providedIn: 'root',
 })
 export class CommentService {
-  constructor(private httpClient: HttpClient) {}
+  constructor(private httpClient: HttpClient) { }
 
   private readonly baseUrl = environment.apiAppUrl;
   private readonly commentEndPoint = `${this.baseUrl}/comment`;
@@ -50,8 +50,8 @@ export class CommentService {
     return this.httpClient.get<CommentModel>(`${this.commentEndPoint}/${id}`);
   }
 
-  editComment$(body: CommentModel, id: string, operation: string) {
-    return this.httpClient.put(`${this.commentEndPoint}/${id}`, body, {
+  editComment$(body: CommentModel, id: string, operation: string) : Observable<CommentModel> {
+    return this.httpClient.put<CommentModel>(`${this.commentEndPoint}/${id}`, body, {
       headers: new HttpHeaders().set(
         'Response',
         `Comment ${operation} successfully`

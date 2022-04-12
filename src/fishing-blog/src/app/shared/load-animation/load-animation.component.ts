@@ -11,5 +11,4 @@ export class LoadAnimationComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
 }

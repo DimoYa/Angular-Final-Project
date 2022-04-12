@@ -14,7 +14,7 @@ export class AuthenticationService {
 
 
   currentAuthtoken: string;
-  
+
   constructor(
     private httpClient: HttpClient,
     private router: Router
@@ -28,7 +28,7 @@ export class AuthenticationService {
     this.currentAuthtoken = value;
   }
 
-  login$(body): Observable<UserModel> {
+  login$(body: Object): Observable<UserModel> {
     return this.httpClient.post<UserModel>(`${this.baseUrl}/login`, body, {
       headers: new HttpHeaders().set(
         'Response',
@@ -37,7 +37,7 @@ export class AuthenticationService {
     });
   }
 
-  register$(body): Observable<UserModel> {
+  register$(body: Object): Observable<UserModel> {
     return this.httpClient.post<UserModel>(`${this.baseUrl}`, body, {
       headers: new HttpHeaders().set(
         'Response',
@@ -46,7 +46,7 @@ export class AuthenticationService {
     });
   }
 
-  logout$() : Observable<Object> {
+  logout$(): Observable<Object> {
     return this.httpClient.post(`${this.baseUrl}/_logout`, {}, {
       headers: new HttpHeaders().set(
         'Response',
@@ -57,10 +57,6 @@ export class AuthenticationService {
 
   isLoggedIn(): boolean {
     return localStorage.getItem('authtoken') !== null;
-  }
-
-  isCurrentUser(): boolean {
-    return `/myProfile/${this.returnId()}` === this.router.url;
   }
 
   returnId(): string {
@@ -79,17 +75,17 @@ export class AuthenticationService {
     return localStorage.getItem('isAdmin') === 'true';
   }
 
-  handleLogin(data: UserModel) {
-        localStorage.setItem('authtoken', data['_kmd']['authtoken']);
-        localStorage.setItem('username', data['username']);
-        localStorage.setItem('id', data['_id']);
-        localStorage.setItem('photo', data['photo']);
-        data['_kmd']['roles'] !== undefined && data['_kmd']['roles'].length != 0
-          ? localStorage.setItem('isAdmin', 'true')
-          : localStorage.setItem('isAdmin', 'false');
+  handleLogin(data: UserModel): void {
+    localStorage.setItem('authtoken', data['_kmd']['authtoken']);
+    localStorage.setItem('username', data['username']);
+    localStorage.setItem('id', data['_id']);
+    localStorage.setItem('photo', data['photo']);
+    data['_kmd']['roles'] !== undefined && data['_kmd']['roles'].length != 0
+      ? localStorage.setItem('isAdmin', 'true')
+      : localStorage.setItem('isAdmin', 'false');
   }
 
-  handleLogout() {
+  handleLogout(): void {
     localStorage.clear();
   }
 }

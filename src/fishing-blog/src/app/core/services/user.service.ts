@@ -22,7 +22,7 @@ export class UserService {
     });
   }
 
-  deleteUser$(id: string) : Observable<Object> {
+  deleteUser$(id: string): Observable<Object> {
     return this.httpClient.delete(`${this.baseUrl}/${id}?hard=true`, {
       headers: new HttpHeaders().set(
         'Response',
@@ -30,7 +30,7 @@ export class UserService {
       ),
     });
   }
-  
+
   getUser$(profileId: string): Observable<UserModel> {
     return this.httpClient.get<UserModel>(`${this.baseUrl}/${profileId}`);
   }

@@ -12,7 +12,7 @@ export class ArticleService {
   constructor(
     private httpClient: HttpClient,
     private authenticationService: AuthenticationService
-  ) {}
+  ) { }
 
   private readonly baseUrl = environment.apiAppUrl;
   private readonly articleEndPoint = `${this.baseUrl}/article`;
@@ -40,12 +40,6 @@ export class ArticleService {
     const currentUser = this.authenticationService.returnUserName();
     return this.httpClient.get<ArticleModel[]>(
       `${this.baseUrl}/article?query={"author":"${currentUser}"}&sort={"_kmd.ect": -1}`
-    );
-  }
-
-  getArticlesByTitle$(title: string): Observable<ArticleModel[]> {
-    return this.httpClient.get<ArticleModel[]>(
-      `${this.baseUrl}/article?query={"headline":"${title}"}&sort={"_kmd.ect": -1}`
     );
   }
 
