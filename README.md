@@ -68,4 +68,4 @@ ng serve
 
 # Deployment
 
-Application is deployed on Heroku: https://more-for-fishing.herokuapp.com/
+Application is deployed to [https://more-for-fishing-angular.web.app/](https://more-for-fishing-angular.web.app/)
