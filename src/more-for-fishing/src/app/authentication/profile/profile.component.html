@@ -1,7 +1,6 @@
 <div *ngIf="currentUser$ | async as user">
     <div class="profile">
         <div class="container"><img [src]="user.photo === null || user.photo === '' ? defaultAvatarPath : user.photo" alt="default user">
-            <h3>User Info:</h3>
             <div class="flex">
                 <p>Username: </p>
                 <p>{{user.username}}</p>
@@ -12,7 +11,7 @@
             </div>
             <div class="flex">
                 <p>Phone: </p>
-                <p *ngIf="user.phoneNumber">+{{user.phoneCode}} {{user.phoneNumber}}</p>
+                <p *ngIf="user.phoneNumber">{{user.phoneCode}} {{user.phoneNumber}}</p>
                 <p *ngIf="!user.phoneNumber"></p>
             </div>
             <hr>
