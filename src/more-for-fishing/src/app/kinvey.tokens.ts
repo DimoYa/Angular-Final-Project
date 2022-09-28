@@ -1,3 +1,3 @@
-export const appKey = 'kid_H1QiVkEyi';
-export const appSecret = 'fa716775b3d341a48e736e73a161a76a';
-export const appMasterSecret = '88e2b61c9fd14af2804e5c965737ce1a';
+export const appKey = 'kid_Sy3-47zzo';
+export const appSecret = 'fd44210762bd4951afd3ca37d9d8da8d';
+export const appMasterSecret = '8e727f8606fe4b93885047e4b8ba2cdf';
